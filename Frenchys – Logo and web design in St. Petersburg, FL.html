@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Frenchys – Logo and web design in St. Petersburg, FL</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbfbfd;--surface:#fff;--ink:#0b1020;--muted:#5a6275;--line:#e4e7ee;--accent:#3355ff;--on-accent:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#070a14;--surface:#0f1424;--ink:#f3f5fb;--muted:#98a1b8;--line:#1f2740;--accent:#6b87ff;--on-accent:#070a14}}
+:root[data-theme="dark"]{--bg:#070a14;--surface:#0f1424;--ink:#f3f5fb;--muted:#98a1b8;--line:#1f2740;--accent:#6b87ff;--on-accent:#070a14}
+*{box-sizing:border-box}html{scroll-padding-top:70px;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.65 'Manrope',system-ui,sans-serif;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+h1,h2,h3{font-family:'Sora','Manrope',sans-serif;margin:0;line-height:1.1;letter-spacing:-.02em}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;padding:.85rem 1.4rem}
+.logo{font:700 1.2rem 'Sora',sans-serif;color:var(--ink);text-decoration:none;letter-spacing:-.03em}
+.logo i{font-style:normal;color:var(--accent)}
+nav{display:flex;gap:1.5rem;align-items:center}nav a{color:var(--muted);text-decoration:none;font-weight:500;font-size:.95rem;transition:color .2s}nav a:hover{color:var(--ink)}
+.cartbtn{background:var(--ink);color:var(--bg);border:0;border-radius:999px;padding:.5rem 1.1rem;font-weight:600;font-size:.9rem;transition:transform .2s}
+.cartbtn:hover{transform:translateY(-2px)}
+.hero{position:relative;overflow:hidden;padding:9rem 1.4rem 5rem}
+.hero>div{position:relative;max-width:1040px;margin:auto}
+.orb{position:absolute;width:520px;height:520px;right:-180px;top:-140px;border-radius:50%;background:radial-gradient(circle at 30% 30%,var(--accent),transparent 65%);opacity:.5;filter:blur(24px);animation:float 7s ease-in-out infinite}
+@keyframes float{50%{transform:translate(-90px,90px) scale(1.3)}}
+.hero h1{font-size:clamp(2.3rem,7.5vw,4.8rem);font-weight:700;max-width:13em}
+.hero h1 span{display:inline-block;animation:rise 1.2s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--d)*.14s)}
+@keyframes rise{from{opacity:0;transform:translateY(80px) rotate(3deg) scale(.96)}}
+.hero p{max-width:32rem;color:var(--muted);font-size:1.15rem;margin:1.5rem 0 2rem;animation:rise .9s .6s both}
+.acts{display:flex;flex-wrap:wrap;gap:.9rem;animation:rise .9s .75s both}
+.cta{display:inline-flex;align-items:center;gap:.5rem;background:var(--accent);color:var(--on-accent);padding:.9rem 1.6rem;border-radius:999px;text-decoration:none;font-weight:600;transition:transform .2s,box-shadow .2s}
+.cta:hover{transform:translateY(-3px);box-shadow:0 10px 24px -8px var(--accent)}
+.ghost{display:inline-flex;align-items:center;padding:.9rem 1.6rem;border-radius:999px;border:1px solid var(--line);color:var(--ink);text-decoration:none;font-weight:600;transition:border-color .2s}
+.ghost:hover{border-color:var(--ink)}
+.scroll{display:flex;align-items:center;gap:.8rem;margin-top:3rem;color:var(--muted);text-decoration:none;font-weight:500;font-size:.95rem;animation:rise .9s 1s both}
+.scroll b{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;border:1.5px solid var(--accent);color:var(--accent);animation:bounce 1.6s ease-in-out infinite}
+@keyframes bounce{50%{transform:translateY(16px)}}
+.marq{overflow:hidden;border-block:1px solid var(--line);padding:1rem 0}
+.track{display:flex;gap:3.5rem;width:max-content;animation:slide 14s linear infinite;font:600 1.35rem 'Sora',sans-serif;color:var(--muted)}
+.track span:nth-child(4n+1){color:var(--ink)}
+@keyframes slide{to{transform:translateX(-50%)}}
+section{max-width:1040px;margin:auto;padding:6rem 1.4rem}
+section h2{font-size:clamp(1.7rem,4.5vw,2.4rem);margin-bottom:.5rem}
+.sub{color:var(--muted);margin:0 0 2rem;max-width:34rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1.1rem}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:transform .3s,border-color .3s,box-shadow .3s}
+.card:hover{transform:translateY(-12px);border-color:var(--accent);box-shadow:0 26px 44px -16px color-mix(in srgb,var(--accent) 70%,transparent)}
+.pic{position:relative;overflow:hidden;height:130px;display:grid;place-items:center;color:var(--accent);background:color-mix(in srgb,var(--accent) 7%,transparent)}
+.pic{perspective:520px}
+.pic svg{width:72px;--dk:color-mix(in srgb,var(--accent) 50%,#000);filter:drop-shadow(1px 1px 0 var(--dk)) drop-shadow(2px 2px 0 var(--dk)) drop-shadow(3px 3px 0 var(--dk)) drop-shadow(4px 5px 0 var(--dk)) drop-shadow(0 14px 12px rgba(0,0,0,.28));animation:tilt 3.2s ease-in-out infinite alternate}
+.pic svg [fill="currentColor"]{fill:url(#g3d)}
+.pic svg [stroke="currentColor"]{stroke:url(#g3d)}
+.card:hover .pic svg{animation:spiny 1.3s linear infinite}
+@keyframes tilt{from{transform:translateY(0) rotateY(-32deg) rotateX(10deg)}to{transform:translateY(-12px) rotateY(32deg) rotateX(-8deg)}}
+@keyframes spiny{from{transform:rotateY(0) scale(1.2)}to{transform:rotateY(360deg) scale(1.2)}}
+.w{fill:var(--surface)}
+.pic:not(.lgbox) svg *{transform-box:fill-box}
+.ws{stroke:var(--surface)}
+.a-rot{transform-origin:50% 50%;animation:rot 2.2s ease-in-out infinite alternate}@keyframes rot{from{transform:rotate(-14deg)}to{transform:rotate(14deg)}}
+.a-spark{transform-origin:50% 50%;animation:spark 1.4s ease-in-out infinite}@keyframes spark{50%{transform:scale(1.6) rotate(45deg)}}
+.a-line{transform-origin:0 50%;animation:grow 2s ease-in-out infinite;animation-delay:calc(var(--n)*.25s)}@keyframes grow{0%,100%{transform:scaleX(.3)}50%{transform:scaleX(1)}}
+.a-fl{transform-origin:50% 100%;animation:fl 2.4s ease-in-out infinite}@keyframes fl{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(-17deg)}}
+.a-fr{transform-origin:50% 100%;animation:fr 2.4s ease-in-out infinite}@keyframes fr{0%,100%{transform:rotate(3deg)}50%{transform:rotate(17deg)}}
+.a-blk{animation:blk 2s ease-in-out infinite;animation-delay:calc(var(--n)*.45s)}@keyframes blk{0%,100%{opacity:.35}50%{opacity:1}}
+.a-swing{transform-origin:50% 0;animation:swing 1.8s ease-in-out infinite alternate}@keyframes swing{from{transform:rotate(-10deg)}to{transform:rotate(10deg)}}
+.a-check{stroke-dasharray:1;animation:draw 2.6s ease-in-out infinite}@keyframes draw{0%{stroke-dashoffset:1}45%,80%{stroke-dashoffset:0}100%{stroke-dashoffset:1}}
+.a-orb{transform-origin:50% 50%;animation:orb 3s ease-in-out infinite alternate}@keyframes orb{from{transform:rotate(-14deg) scale(.95)}to{transform:rotate(14deg) scale(1.05)}}
+.a-pop{transform-origin:50% 50%;animation:pop 1.8s ease-in-out infinite}@keyframes pop{50%{transform:scale(1.2)}}
+.card::before{content:"";display:block;height:3px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.card:hover::before{transform:scaleX(1)}
+.pic::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,color-mix(in srgb,var(--accent) 22%,transparent) 50%,transparent 65%);transform:translateX(-100%);pointer-events:none}
+.card:hover .pic::after{animation:sweep .9s ease}
+@keyframes sweep{to{transform:translateX(100%)}}
+.rv{opacity:0}
+.rv.in{opacity:1;animation:rise .8s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:calc(var(--i)*80ms)}
+.info{padding:1rem 1.1rem 1.2rem}
+.info h3{font-size:1rem}.info p{margin:.3rem 0 1rem;color:var(--muted);font-size:.92rem}
+.row{display:flex;justify-content:space-between;align-items:center}
+.row strong{font:600 1.05rem 'Sora',sans-serif;background:color-mix(in srgb,var(--accent) 10%,transparent);color:var(--accent);padding:.15rem .7rem;border-radius:999px}
+.add{background:none;border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:.35rem .95rem;font-weight:600;font-size:.88rem;transition:background .2s,color .2s,border-color .2s}
+.add:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.wk{display:block;color:inherit;text-decoration:none}
+.lg{width:120px;height:120px}
+.lg *{transform-box:view-box}
+.pic.lgbox{height:170px;color:inherit}
+.pic.lgbox svg{width:120px;animation:none;filter:none}.card:hover .pic.lgbox svg{animation:none;transform:scale(1.1)}
+.s1{transform-origin:60px 52px;animation:s1 1.4s ease-in-out infinite alternate}
+.s2{transform-origin:60px 52px;animation:s2 1.4s ease-in-out infinite alternate}
+@keyframes s1{to{transform:rotate(-30deg)}}@keyframes s2{to{transform:rotate(30deg)}}
+.sun{animation:sunrise 2s ease-in-out infinite alternate}
+@keyframes sunrise{from{transform:translateY(26px)}to{transform:translateY(0)}}
+.ray{animation:ray 3s ease-in-out infinite alternate}
+@keyframes ray{from{opacity:.15}to{opacity:1}}
+.taco{transform-origin:60px 82px;animation:wob 1.6s ease-in-out infinite alternate}
+@keyframes wob{from{transform:rotate(-11deg)}to{transform:rotate(11deg)}}
+.let{animation:wave 1.8s ease-in-out infinite alternate}
+@keyframes wave{to{transform:translateX(10px)}}
+.pet{transform-origin:60px 44px;animation:spin 10s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ctr{transform-origin:60px 44px;animation:pulse 2.2s ease-in-out infinite alternate}
+@keyframes pulse{to{transform:scale(2)}}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:1.5rem;position:relative;max-width:42rem}
+.steps::before{content:"";position:absolute;left:21px;top:10px;bottom:10px;width:2px;background:var(--line)}
+.step{position:relative;display:flex;gap:1.1rem;align-items:flex-start}
+.num{flex:none;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--accent);color:var(--on-accent);font:700 1.05rem 'Sora',sans-serif;position:relative;z-index:1;box-shadow:0 0 0 6px var(--bg)}
+.step.in .num{animation:pop2 .9s cubic-bezier(.2,.8,.2,1) .15s backwards}
+@keyframes pop2{from{transform:scale(0) rotate(-120deg)}}
+.step h3{font-size:1.1rem;margin:.55rem 0 .25rem}.step p{margin:0;color:var(--muted)}
+.chk{padding:1.4rem 1.5rem;margin:2.4rem 0 2rem;max-width:42rem}
+.chk h3{font-size:1.1rem;margin-bottom:.8rem}.chk ul{margin:0;padding-left:1.2rem;color:var(--muted)}.chk li{margin:.35rem 0}
+@media (max-width:560px){header{flex-wrap:wrap;gap:.5rem}nav{gap:.9rem;flex-wrap:wrap;font-size:.85rem}}
+.note{color:var(--muted);font-size:.92rem;margin:1.3rem 0 0}
+.about{max-width:38rem;display:grid;gap:1rem}.about a{color:var(--accent);font-weight:600}
+footer{padding:2.5rem 1.4rem;text-align:center;color:var(--muted);border-top:1px solid var(--line);font-size:.92rem}
+#drawer{position:fixed;top:0;right:0;bottom:0;width:min(380px,100%);background:var(--surface);border-left:1px solid var(--line);transform:translateX(100%);transition:transform .35s cubic-bezier(.2,.8,.2,1);z-index:20;display:flex;flex-direction:column;overflow:auto;padding:calc(1rem + env(safe-area-inset-top,0px)) 1.3rem calc(1rem + env(safe-area-inset-bottom,0px))}
+#drawer.open{transform:none}
+#items{flex:1;margin:1rem 0}
+.line{display:flex;justify-content:space-between;padding:.7rem 0;border-bottom:1px solid var(--line)}
+.rm{background:none;border:0;color:var(--accent);padding:0 0 0 .7rem}
+.empty{color:var(--muted)}
+.checkout{background:var(--accent);color:var(--on-accent);border:0;border-radius:999px;padding:.9rem;font-weight:600;margin-top:.8rem}
+#msg{font-size:.9rem;color:var(--muted);margin:.7rem 0 0;min-height:1.3em}
+#msg a{color:var(--accent);font-weight:600}
+#msg textarea{background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:.5rem;font:inherit;font-size:.85rem}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="g3d" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:color-mix(in srgb,var(--accent) 55%,#fff)"/><stop offset="1" style="stop-color:var(--accent)"/></linearGradient></defs></svg>
+<header>
+<a class="logo" href="#top">Frenchys<i>.</i></a>
+<nav><a href="#how">How it works</a><a href="#shop">Services</a><a href="#work">My work</a><a href="#about">Contact</a><button class="cartbtn" id="open" aria-label="Open cart">Cart (<span id="count">0</span>)</button></nav>
+</header>
+<main id="top">
+<div class="hero"><div class="orb"></div>
+<div>
+<h1><span style="--d:0">Design</span> <span style="--d:1">that</span> <span style="--d:2">makes</span> <span style="--d:3">your</span> <span style="--d:4">business</span> <span style="--d:5">look</span> <span style="--d:6">established.</span></h1>
+<p>Logo and web design for small businesses in St. Petersburg, Florida. Pick a package, send your details, and get something you can be proud of.</p>
+<div class="acts"><a class="cta" href="#shop">See services</a><a class="ghost" href="#work">See my work</a></div>
+<a class="scroll" href="#how"><b aria-hidden="true">↓</b><span>Scroll down to see how it works</span></a>
+</div></div>
+<div class="marq" aria-hidden="true"><div class="track">
+<span>Logo design</span><span>Web design</span><span>Fast turnaround</span><span>Free revisions</span><span>Logo design</span><span>Web design</span><span>Fast turnaround</span><span>Free revisions</span>
+<span>Logo design</span><span>Web design</span><span>Fast turnaround</span><span>Free revisions</span><span>Logo design</span><span>Web design</span><span>Fast turnaround</span><span>Free revisions</span>
+</div></div>
+<section id="how"><h2>How it works</h2><p class="sub">From your first order to your finished design, here is every step.</p>
+<ol class="steps">
+<li class="step rv" style="--i:0"><span class="num">1</span><div><h3>Choose your services</h3><p>Browse the services above and tap Add package on everything you want. You can pick more than one, like a logo and a website.</p></div></li>
+<li class="step rv" style="--i:0"><span class="num">2</span><div><h3>Send your order</h3><p>Open your cart and tap Send order. Pick Gmail or your email app, fill in your name and business, and press send. If the buttons don’t open, copy the order details and email them to me.</p></div></li>
+<li class="step rv" style="--i:0"><span class="num">3</span><div><h3>I confirm the details</h3><p>I’ll reply by email, usually within a day, to confirm your packages, the price, and the timeline. I may ask a few questions about your business.</p></div></li>
+<li class="step rv" style="--i:0"><span class="num">4</span><div><h3>Agree and pay the deposit</h3><p>Once you’re happy with the plan, I’ll email the payment details. Work starts after a deposit of half the price. The rest is due when you approve the final version.</p></div></li>
+<li class="step rv" style="--i:0"><span class="num">5</span><div><h3>Send me your materials</h3><p>Email me what I need: your logo if you have one, business details, photos, colors you like, and examples of designs you love.</p></div></li>
+<li class="step rv" style="--i:0"><span class="num">6</span><div><h3>Review your first draft</h3><p>I’ll send a draft for you to look at. Tell me what you like and what you want changed.</p></div></li>
+<li class="step rv" style="--i:0"><span class="num">7</span><div><h3>Free revisions</h3><p>I’ll update the design based on your feedback until you’re happy. Revisions are free on every package.</p></div></li>
+<li class="step rv" style="--i:0"><span class="num">8</span><div><h3>Final delivery</h3><p>After you approve the design and the final payment is made, I send you the finished logo files or website files and help you get everything live.</p></div></li>
+</ol>
+<div class="card chk rv" style="--i:0"><h3>What to include in your first email</h3><ul><li>Your business name and what you do</li><li>The services you chose</li><li>Colors and styles you like</li><li>Your logo or photos, if you have them</li><li>Links to 2 or 3 designs you like</li><li>Your deadline, if you have one</li></ul></div>
+<a class="cta" href="#shop">See services</a></section>
+<section id="shop" hidden><h2>Services</h2><p class="sub">Clear prices and free revisions. Add what you need and send your order.</p><div class="grid" id="grid"></div></section>
+<section id="work"><h2>My work</h2><p class="sub">Practice projects for imaginary businesses, showing a range of styles.</p><div class="grid">
+<div class="card"><div class="pic lgbox" style="background:#ffd60a"><svg class="lg" viewBox="0 0 120 120" role="img" aria-label="Rise Fitness logo"><path class="sun" d="M20 80a40 40 0 0 1 80 0z" fill="#111"/><rect x="12" y="87" width="96" height="5" fill="#111"/><g stroke="#111" stroke-width="5" stroke-linecap="round"><path class="ray" d="M60 20v8M24 36l6 5M96 36l-6 5"/></g><text x="60" y="112" text-anchor="middle" font-family="Sora,sans-serif" font-weight="700" font-size="14" fill="#111">RISE</text></svg></div><div class="info"><h3>Rise Fitness</h3><p>Logo concept for a gym</p></div></div>
+<div class="card"><div class="pic lgbox" style="background:#fff1d6"><svg class="lg" viewBox="0 0 120 120" role="img" aria-label="Casa Taco logo"><g class="taco"><path d="M10 82a50 50 0 0 1 100 0z" fill="#f4a62a" stroke="#7a3e00" stroke-width="3" stroke-linejoin="round"/><path class="let" d="M22 66q7-10 14 0t14 0 14 0 14 0 14 0" fill="none" stroke="#1f8a4c" stroke-width="6" stroke-linecap="round"/><circle cx="38" cy="74" r="4" fill="#d62828"/><circle cx="60" cy="72" r="4" fill="#d62828"/><circle cx="82" cy="74" r="4" fill="#d62828"/></g><text x="60" y="108" text-anchor="middle" font-family="Sora,sans-serif" font-weight="700" font-size="13" fill="#7a3e00">Casa Taco</text></svg></div><div class="info"><h3>Casa Taco</h3><p>Logo concept for a taco truck</p></div></div>
+<div class="card"><div class="pic lgbox" style="background:#ffe0ec"><svg class="lg" viewBox="0 0 120 120" role="img" aria-label="Bloom Florist logo"><g class="pet" fill="none" stroke="#b0125f" stroke-width="2.5"><ellipse cx="60" cy="26" rx="8" ry="15"/><ellipse cx="60" cy="26" rx="8" ry="15" transform="rotate(72 60 44)"/><ellipse cx="60" cy="26" rx="8" ry="15" transform="rotate(144 60 44)"/><ellipse cx="60" cy="26" rx="8" ry="15" transform="rotate(216 60 44)"/><ellipse cx="60" cy="26" rx="8" ry="15" transform="rotate(288 60 44)"/></g><g fill="none" stroke="#b0125f" stroke-width="2.5" stroke-linecap="round"><path d="M60 62v28"/><path d="M60 80c-14-1-19-8-19-14 12 0 19 5 19 14z"/></g><circle class="ctr" cx="60" cy="44" r="5" fill="#b0125f"/><text x="60" y="112" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="18" fill="#b0125f">Bloom</text></svg></div><div class="info"><h3>Bloom Florist</h3><p>Logo concept for a flower shop</p></div></div>
+</div></section>
+<section id="about"><h2>Contact</h2>
+<div class="about"><p>I design logos and code websites for small businesses in St. Petersburg, Florida: restaurants, salons, shops, and local services. Simple pricing, clear communication, and free revisions on every package.</p>
+<p>Questions or a custom request? Email <a href="mailto:frenchycollins2010@gmail.com">frenchycollins2010@gmail.com</a> and I’ll reply within a day.</p></div></section>
+</main>
+<footer>© 2026 Frenchys</footer>
+
+<aside id="drawer" aria-label="Shopping cart">
+<div class="row"><h2 style="font-size:1.2rem">Your cart</h2><button class="add" id="close">Close</button></div>
+<div id="items"></div>
+<div class="row"><strong>Total</strong><strong id="total">$0</strong></div>
+<button class="checkout" id="co">Send order</button>
+<p id="msg" role="status"></p>
+</aside>
+
+<script>
+const P=[
+{n:'Quick Fix',d:'Fix a layout, bug, or slow page',p:30},
+{n:'Landing Page',d:'One polished page, mobile-ready',p:60},
+{n:'Starter Site',d:'3 pages: home, about, contact',p:90},
+{n:'Business Site',d:'5 pages with a contact form',p:180},
+{n:'Online Store',d:'Product pages and a working cart',p:300},
+{n:'Monthly Care',d:'Updates and fixes each month',p:25},
+{n:'Logo Design',d:'A simple, clean logo with 2 concepts',p:40},
+{n:'Logo and Site Bundle',d:'A logo plus a 3-page website',p:120}];
+const S=[
+'<g class="a-rot"><path d="M70 12a20 20 0 0 0-18 28L14 78l8 8 38-38a20 20 0 0 0 28-18l-12 12-10-2-2-10z" fill="currentColor"/><circle class="w" cx="21" cy="79" r="3.5"/></g><path class="a-spark" d="M82 10l3 8 8 3-8 3-3 8-3-8-8-3 8-3z" fill="currentColor"/>',
+'<rect x="20" y="8" width="60" height="84" rx="8" fill="currentColor"/><rect class="w" x="28" y="18" width="44" height="26" rx="4"/><rect class="w a-line" style="--n:0" x="28" y="52" width="44" height="6" rx="3"/><rect class="w a-line" style="--n:1" x="28" y="64" width="30" height="6" rx="3"/><rect class="w" x="28" y="76" width="22" height="8" rx="4" opacity=".9"/>',
+'<g class="a-fl"><rect x="6" y="26" width="34" height="56" rx="5" fill="currentColor" opacity=".5"/></g><g class="a-fr"><rect x="60" y="26" width="34" height="56" rx="5" fill="currentColor" opacity=".5"/></g><rect x="30" y="14" width="40" height="64" rx="6" fill="currentColor"/><rect class="w" x="37" y="24" width="26" height="14" rx="3"/><rect class="w" x="37" y="46" width="26" height="5" rx="2.5" opacity=".7"/><rect class="w" x="37" y="56" width="18" height="5" rx="2.5" opacity=".7"/>',
+'<rect x="6" y="14" width="88" height="72" rx="10" fill="currentColor"/><circle class="w" cx="17" cy="24" r="2.5"/><circle class="w" cx="25" cy="24" r="2.5"/><circle class="w" cx="33" cy="24" r="2.5"/><rect class="w a-blk" style="--n:0" x="14" y="34" width="34" height="22" rx="4"/><rect class="w a-blk" style="--n:1" x="52" y="34" width="34" height="22" rx="4"/><rect class="w a-blk" style="--n:2" x="14" y="62" width="72" height="14" rx="4"/>',
+'<g class="a-swing"><path d="M24 38h52l6 50H18z" fill="currentColor"/><path d="M36 42v-8a14 14 0 0 1 28 0v8" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/><circle class="w" cx="40" cy="54" r="3.5"/><circle class="w" cx="60" cy="54" r="3.5"/></g>',
+'<rect x="12" y="20" width="76" height="68" rx="10" fill="currentColor"/><rect x="28" y="10" width="8" height="20" rx="4" fill="currentColor"/><rect x="64" y="10" width="8" height="20" rx="4" fill="currentColor"/><rect class="w" x="12" y="36" width="76" height="3" opacity=".6"/><path class="ws a-check" pathLength="1" d="M30 62l13 13 27-27" fill="none" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>',
+'<g class="a-orb"><circle cx="34" cy="36" r="20" fill="currentColor"/><rect x="50" y="50" width="38" height="38" rx="7" fill="currentColor" opacity=".65"/><path d="M18 90l17-30 17 30z" fill="currentColor" opacity=".85"/><circle class="w" cx="34" cy="36" r="7"/></g>',
+'<rect x="30" y="28" width="58" height="62" rx="9" fill="currentColor" opacity=".7"/><rect class="w a-line" style="--n:0" x="40" y="62" width="38" height="6" rx="3"/><rect class="w a-line" style="--n:1" x="40" y="74" width="24" height="6" rx="3"/><g class="a-pop"><circle cx="30" cy="30" r="22" fill="currentColor"/><circle class="w" cx="30" cy="30" r="8"/></g>'];
+const cart=[];
+const $=id=>document.getElementById(id);
+$('grid').innerHTML=P.map((x,i)=>`<article class="card rv" style="--i:${i%4}"><div class="pic"><svg viewBox="0 0 100 100" aria-hidden="true">${S[i]}</svg></div><div class="info"><h3>${x.n}</h3><p>${x.d}</p><div class="row"><strong>$${x.p}</strong><button class="add" data-i="${i}">Add package</button></div></div></article>`).join('');
+function render(){
+$('count').textContent=cart.length;
+$('total').textContent='$'+cart.reduce((s,i)=>s+P[i].p,0);
+$('items').innerHTML=cart.length?cart.map((i,k)=>`<div class="line"><span>${P[i].n}</span><span>$${P[i].p}<button class="rm" data-k="${k}" aria-label="Remove ${P[i].n}">Remove</button></span></div>`).join(''):'<p class="empty">Your cart is empty. Add a package to get started.</p>';}
+document.addEventListener('click',e=>{
+const a=e.target.closest('.add[data-i]');if(a){cart.push(+a.dataset.i);render();$('drawer').classList.add('open');}
+const r=e.target.closest('.rm');if(r){cart.splice(+r.dataset.k,1);render();}});
+$('open').onclick=()=>$('drawer').classList.add('open');
+$('close').onclick=()=>$('drawer').classList.remove('open');
+$('co').onclick=()=>{
+if(!cart.length){$('msg').textContent='Add an item before checking out.';return;}
+const list=cart.map(i=>'- '+P[i].n+' ($'+P[i].p+')').join('\n');
+const total=cart.reduce((s,i)=>s+P[i].p,0);
+const body='Hi! I’d like to order:\n'+list+'\n\nTotal: $'+total+'\n\nMy name:\nMy business:\nAnything else I should know:';
+const mail='mailto:frenchycollins2010@gmail.com?subject='+encodeURIComponent('Order from Frenchys')+'&body='+encodeURIComponent(body);
+const gm='https://mail.google.com/mail/?view=cm&fs=1&to=frenchycollins2010%40gmail.com&su='+encodeURIComponent('Order from Frenchys')+'&body='+encodeURIComponent(body);
+$('msg').innerHTML='<strong>Send your order:</strong><br><a href="'+gm+'" target="_blank" rel="noopener">Open in Gmail</a><br><a href="'+mail+'">Open in my email app</a><br><button class="add" id="cp" type="button">Copy order details</button><br><textarea id="ord" readonly rows="6" style="width:100%;margin-top:.5rem"></textarea><br>If those don’t open, copy the details and email them to frenchycollins2010@gmail.com. No payment is taken on this site. We’ll confirm details and payment by email before any work starts.';
+$('ord').value=body;
+$('cp').onclick=()=>{$('ord').select();try{navigator.clipboard.writeText(body)}catch(e){document.execCommand('copy')}$('cp').textContent='Copied';};
+};
+render();
+document.addEventListener('click',e=>{if(e.target.closest('a[href="#shop"]'))$('shop').hidden=false;});
+if(location.hash==='#shop')$('shop').hidden=false;
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
