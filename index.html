@@ -3,11 +3,12 @@
 <head>
 <!--
   CHANGELOG (update the footer text id="ver" and the meta below every time you change the site)
+  1.2  Nov 24, 2026  Undid the strict send check from 1.1 (it blocked orders). Kept HEIC conversion and longer timeout.
   1.1  Nov 24, 2026  Fixed photo uploads: real send confirmation, HEIC photos converted, longer timeout. Added version number.
   1.0  Original version
 -->
 <meta charset="utf-8">
-<meta name="version" content="1.1">
+<meta name="version" content="1.2">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Frenchys – Logo and web design for everyone</title>
 <meta name="description" content="Frenchys is a Florida-based logo and web design studio working with clients anywhere. Clear pricing, fast turnaround and free revisions on every package.">
@@ -212,7 +213,7 @@ footer{padding:2.5rem 1.4rem;text-align:center;color:var(--muted);border-top:1px
 <div class="about"><p>Frenchys is a Florida-based logo and web design studio that works with clients anywhere. From a clean, memorable logo to a fast, mobile-ready website, every project is built around your brand, with clear pricing, quick turnaround, and free revisions on every package. Whether you run a local shop, an online business, or are just getting started, you can order from anywhere and everything is handled by email, start to finish.</p>
 <p>Questions or a custom request? Email <a href="mailto:frenchycollins2010@gmail.com">frenchycollins2010@gmail.com</a> and I’ll reply within a day.</p></div></section>
 </main>
-<footer>© 2026 Frenchys · Florida-based, serving clients everywhere<br><small id="ver" class="ver">Version 1.1 · Updated Nov 24, 2026</small></footer>
+<footer>© 2026 Frenchys · Florida-based, serving clients everywhere<br><small id="ver" class="ver">Version 1.2 · Updated Nov 24, 2026</small></footer>
 
 <aside id="drawer" aria-label="Shopping cart">
 <div class="row"><h2 style="font-size:1.2rem">Your cart</h2><button class="add" id="close">Close</button></div>
@@ -305,21 +306,14 @@ function setErr(m){$('msg').textContent=m;$('msg').className=m?'err':'';}
 function showForm(){form.hidden=false;$('done').hidden=true;}
 function sendWithFiles(fields){return new Promise((resolve,reject)=>{
 const fr=$('sendframe'),f=document.createElement('form');
-const canVerify=/^https?:$/.test(location.protocol);
-if(canVerify)fields._next=location.origin+location.pathname+'#sent';
 f.method='POST';f.action='https://formsubmit.co/'+TO;f.enctype='multipart/form-data';f.target='sendframe';f.hidden=true;
 for(const k in fields){const i=document.createElement('input');i.type='hidden';i.name=k;i.value=fields[k];f.appendChild(i);}
 const fi=document.createElement('input');fi.type='file';fi.name='attachment';fi.multiple=true;
 try{const dt=new DataTransfer();files.forEach(x=>dt.items.add(x));fi.files=dt.files;}catch(e){return reject(new Error('this browser could not attach the pictures'));}
 f.appendChild(fi);document.body.appendChild(f);
-let first=true;
 const done=()=>{clearTimeout(tm);fr.onload=null;f.remove();};
 const tm=setTimeout(()=>{done();reject(new Error('timed out after 60 seconds'));},60000);
-fr.onload=()=>{
-if(first&&!canVerify){first=false;done();return resolve();}
-let ok=false;try{ok=fr.contentWindow.location.hash==='#sent';}catch(e){}
-done();
-if(ok)resolve();else reject(new Error('the pictures were not confirmed as received'));};
+fr.onload=()=>{done();resolve();};
 f.submit();});}
 form.addEventListener('submit',async e=>{
 e.preventDefault();setErr('');
