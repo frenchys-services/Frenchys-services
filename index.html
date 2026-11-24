@@ -148,6 +148,11 @@ footer{padding:2.5rem 1.4rem;text-align:center;color:var(--muted);border-top:1px
 #orderform .checkout,#done .checkout{width:100%}
 .checkout:disabled{opacity:.6;cursor:wait}
 #msg.err{color:#e5484d}
+.up{display:block;text-align:center;border:1.5px dashed var(--accent);color:var(--accent);border-radius:10px;padding:.85rem;font-weight:600;font-size:.92rem;cursor:pointer;transition:background .2s}
+.up:hover{background:color-mix(in srgb,var(--accent) 8%,transparent)}
+.fl{display:flex;justify-content:space-between;align-items:center;gap:.6rem;font-size:.85rem;color:var(--ink);padding:.3rem 0}
+.fl span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rmf{background:none;border:0;color:var(--accent);padding:0}
 #done{text-align:center;padding:1.5rem .5rem}
 #done .ok{width:64px;height:64px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;margin:0 auto 1rem;font:700 2rem 'Sora',sans-serif}
 #done h3{font:700 1.4rem 'Sora',sans-serif;margin:0 0 .5rem}
@@ -206,6 +211,13 @@ footer{padding:2.5rem 1.4rem;text-align:center;color:var(--muted);border-top:1px
 <label class="fld">Your name<input id="f_name" name="name" autocomplete="name" required></label>
 <label class="fld">Your email<input id="f_email" name="email" type="email" inputmode="email" autocomplete="email" required></label>
 <label class="fld"><span>Business name <span class="opt">(optional)</span></span><input id="f_biz" name="business" autocomplete="organization"></label>
+<label class="fld"><span>Links to designs you like <span class="opt">(optional, paste one per line)</span></span><textarea id="f_links" name="links" rows="3" placeholder="https://..."></textarea></label>
+<div class="fld"><span>Pictures or files <span class="opt">(optional: logo, photos, examples)</span></span>
+<label class="up" for="f_files">Tap to add files, or paste an image here<input id="f_files" type="file" accept="image/*,.pdf" multiple hidden></label>
+<div id="filelist"></div></div>
+<label class="fld"><span>Colors and style you want <span class="opt">(optional)</span></span><input id="f_style" name="style" placeholder="e.g. navy and gold, modern, playful"></label>
+<label class="fld"><span>Your current website or social page <span class="opt">(optional)</span></span><input id="f_site" name="site" inputmode="url" placeholder="https://..."></label>
+<label class="fld"><span>Deadline <span class="opt">(optional)</span></span><input id="f_deadline" name="deadline" placeholder="e.g. by December 20"></label>
 <label class="fld"><span>Anything else I should know? <span class="opt">(optional)</span></span><textarea id="f_notes" name="notes" rows="3"></textarea></label>
 <input type="text" id="f_honey" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
 <button class="checkout" id="co" type="submit">Send order</button>
@@ -253,13 +265,35 @@ $('open').onclick=()=>{if(!$('done').hidden&&!cart.length)showForm();$('drawer')
 $('close').onclick=()=>$('drawer').classList.remove('open');
 const TO='frenchycollins2010@gmail.com';
 const form=$('orderform');
+const files=[],MAXB=5*1024*1024,MAXN=6;
+const fmt=n=>n<1048576?Math.max(1,Math.round(n/1024))+' KB':(n/1048576).toFixed(1)+' MB';
+function shrink(f){return new Promise(res=>{
+if(!/^image\/(jpeg|png|webp)$/.test(f.type)||f.size<400000)return res(f);
+const img=new Image(),u=URL.createObjectURL(f);
+img.onload=()=>{const k=Math.min(1,1600/Math.max(img.width,img.height)),c=document.createElement('canvas');
+c.width=Math.round(img.width*k);c.height=Math.round(img.height*k);
+const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.drawImage(img,0,0,c.width,c.height);URL.revokeObjectURL(u);
+c.toBlob(b=>res(b&&b.size<f.size?new File([b],f.name.replace(/\.\w+$/,'')+'.jpg',{type:'image/jpeg'}):f),'image/jpeg',.82)};
+img.onerror=()=>{URL.revokeObjectURL(u);res(f)};img.src=u;});}
+function renderFiles(){$('filelist').innerHTML=files.map((f,k)=>'<div class="fl"><span>'+f.name.replace(/</g,'&lt;')+' · '+fmt(f.size)+'</span><button type="button" class="rmf" data-f="'+k+'" aria-label="Remove file">Remove</button></div>').join('');}
+async function addFiles(list){
+for(let f of list){
+if(files.length>=MAXN){setErr('You can add up to '+MAXN+' files. Paste links for the rest.');break;}
+if(f.name==='image.png')f=new File([f],'pasted-'+Date.now()+'.png',{type:f.type});
+f=await shrink(f);
+if(files.reduce((s,x)=>s+x.size,0)+f.size>MAXB){setErr('Files are limited to 5 MB total. Paste a link for large files.');continue;}
+setErr('');files.push(f);}
+renderFiles();}
+$('f_files').addEventListener('change',e=>{addFiles([...e.target.files]);e.target.value='';});
+$('drawer').addEventListener('paste',e=>{const fl=[...(e.clipboardData?e.clipboardData.files:[])];if(fl.length){e.preventDefault();addFiles(fl);}});
+$('filelist').addEventListener('click',e=>{const b=e.target.closest('.rmf');if(b){files.splice(+b.dataset.f,1);renderFiles();}});
 function setErr(m){$('msg').textContent=m;$('msg').className=m?'err':'';}
 function showForm(){form.hidden=false;$('done').hidden=true;}
 form.addEventListener('submit',async e=>{
 e.preventDefault();setErr('');
 document.querySelectorAll('.fld').forEach(f=>f.classList.remove('bad'));
 if(!cart.length){setErr('Add an item before sending your order.');return;}
-const name=$('f_name').value.trim(),email=$('f_email').value.trim(),biz=$('f_biz').value.trim(),notes=$('f_notes').value.trim();
+const name=$('f_name').value.trim(),email=$('f_email').value.trim(),biz=$('f_biz').value.trim(),notes=$('f_notes').value.trim(),links=$('f_links').value.trim(),style=$('f_style').value.trim(),site=$('f_site').value.trim(),deadline=$('f_deadline').value.trim();
 if(!name){$('f_name').parentNode.classList.add('bad');setErr('Please enter your name.');$('f_name').focus();return;}
 if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){$('f_email').parentNode.classList.add('bad');setErr('Please enter a valid email so I can reply.');$('f_email').focus();return;}
 if($('f_honey').value)return;
@@ -267,17 +301,20 @@ const list=cart.map(i=>'- '+P[i].n+' ($'+P[i].p+')').join('\n');
 const total=cart.reduce((s,i)=>s+P[i].p,0);
 const btn=$('co');btn.disabled=true;btn.textContent='Sending…';
 try{
+const fd=new FormData();
+const fields={_subject:'Order from Frenchys',_template:'table',_captcha:'false',name:name,email:email,business:biz||'(not given)',order:list,total:'$'+total,design_links:links||'(none)',colors_and_style:style||'(none)',current_site:site||'(none)',deadline:deadline||'(none)',notes:notes||'(none)'};
+for(const k in fields)fd.append(k,fields[k]);
+files.forEach(f=>fd.append('attachment',f,f.name));
 const ctl=new AbortController();const tm=setTimeout(()=>ctl.abort(),15000);
-const res=await fetch('https://formsubmit.co/ajax/'+TO,{method:'POST',signal:ctl.signal,headers:{'Content-Type':'application/json','Accept':'application/json'},
-body:JSON.stringify({_subject:'Order from Frenchys',_template:'table',_captcha:'false',name:name,email:email,business:biz||'(not given)',order:list,total:'$'+total,notes:notes||'(none)'})});
+const res=await fetch('https://formsubmit.co/ajax/'+TO,{method:'POST',signal:ctl.signal,headers:{'Accept':'application/json'},body:fd});
 clearTimeout(tm);const data=await res.json().catch(()=>({}));
 if(res.ok&&(data.success===true||data.success==='true')){
 $('donetxt').textContent='Thanks, '+name+'! Your order for $'+total+' is in. I’ll reply to '+email+'.';
 form.hidden=true;$('done').hidden=false;setErr('');
-cart.length=0;render();form.reset();
+cart.length=0;render();form.reset();files.length=0;renderFiles();
 }else throw new Error('send failed');
 }catch(err){
-const body='Hi! I’d like to order:\n'+list+'\n\nTotal: $'+total+'\n\nMy name: '+name+'\nMy business: '+biz+'\nAnything else: '+notes;
+const body='Hi! I’d like to order:\n'+list+'\n\nTotal: $'+total+'\n\nMy name: '+name+'\nMy business: '+biz+'\nDesign links: '+links+'\nColors and style: '+style+'\nCurrent site: '+site+'\nDeadline: '+deadline+'\nAnything else: '+notes+(files.length?'\n\n(Please attach your pictures to this email.)':'');
 $('msg').className='err';
 $('msg').innerHTML='Sorry, your order didn’t go through. Please try again in a moment. If it keeps failing, <a href="mailto:'+TO+'?subject='+encodeURIComponent('Order from Frenchys')+'&body='+encodeURIComponent(body)+'">email it to me instead</a>.';
 }finally{btn.disabled=false;btn.textContent='Send order';}
