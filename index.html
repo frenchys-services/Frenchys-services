@@ -3,7 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Frenchys – Logo and web design in St. Petersburg, FL</title>
+<title>Frenchys – Logo and web design for everyone</title>
+<meta name="description" content="Frenchys is a Florida-based logo and web design studio working with clients anywhere. Clear pricing, fast turnaround and free revisions on every package.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%B4%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#fbfbfd;--surface:#fff;--ink:#0b1020;--muted:#5a6275;--line:#e4e7ee;--accent:#3355ff;--on-accent:#fff;
@@ -125,20 +127,32 @@ footer{padding:2.5rem 1.4rem;text-align:center;color:var(--muted);border-top:1px
 #msg{font-size:.9rem;color:var(--muted);margin:.7rem 0 0;min-height:1.3em}
 #msg a{color:var(--accent);font-weight:600}
 #msg textarea{background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:.5rem;font:inherit;font-size:.85rem}
+.fld{display:grid;gap:.25rem;font-size:.82rem;color:var(--muted);margin-top:.65rem;font-weight:500}
+.fld .opt{font-weight:400;opacity:.8}
+.fld input,.fld textarea{background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:.65rem .75rem;font:inherit;font-size:1rem;width:100%}
+.fld input:focus,.fld textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+.fld.bad input{border-color:#e5484d}
+#orderform .checkout,#done .checkout{width:100%}
+.checkout:disabled{opacity:.6;cursor:wait}
+#msg.err{color:#e5484d}
+#done{text-align:center;padding:1.5rem .5rem}
+#done .ok{width:64px;height:64px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;margin:0 auto 1rem;font:700 2rem 'Sora',sans-serif}
+#done h3{font:700 1.4rem 'Sora',sans-serif;margin:0 0 .5rem}
+#done p{color:var(--muted);margin:.4rem 0}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="g3d" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:color-mix(in srgb,var(--accent) 55%,#fff)"/><stop offset="1" style="stop-color:var(--accent)"/></linearGradient></defs></svg>
 <header>
-<a class="logo" href="#top">Frenchys<i>.</i></a>
+<a class="logo" href="#top" aria-label="Frenchys home"><svg viewBox="0 0 146 40" height="36" role="img" aria-hidden="true"><g transform="translate(-5,-10) scale(0.22)"><ellipse cx="62" cy="200" rx="30" ry="6" fill="#e9c98a"/><path d="M58 198C56 170 62 140 68 114" fill="none" stroke="#c98b4a" stroke-width="7" stroke-linecap="round"/><g fill="none" stroke="#19c39a" stroke-width="7" stroke-linecap="round"><path d="M68 112Q50 90 32 102"/><path d="M68 112Q56 82 42 68"/><path d="M68 112Q70 78 68 58"/><path d="M68 112Q86 80 96 68"/><path d="M68 112Q48 108 34 126"/><path d="M68 112Q82 102 92 114"/></g></g><text x="24" y="26" font-family="Sora,Manrope,system-ui,sans-serif" font-size="22" font-weight="700" fill="currentColor" letter-spacing="-1">frenchys<tspan fill="#ffc233">.</tspan></text><path d="M26 32Q50 26 72 32T118 32" fill="none" stroke="#ffc233" stroke-width="2.4" stroke-linecap="round"/><path d="M26 37Q50 31 72 37T118 37" fill="none" stroke="#19c3d6" stroke-width="1.8" stroke-linecap="round"/><g transform="translate(61,-10) scale(0.22)"><ellipse cx="322" cy="200" rx="28" ry="6" fill="#e9c98a"/><g fill="none" stroke="#ff6fa5" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M318 160L318 198"/><path d="M326 160L336 178L326 184"/></g><ellipse cx="322" cy="150" rx="18" ry="11" fill="#ff6fa5"/><path d="M308 148Q322 138 336 148Q322 158 308 148z" fill="#ff9cc2"/><path d="M338 146C352 140 350 122 338 118" fill="none" stroke="#ff6fa5" stroke-width="6" stroke-linecap="round"/><circle cx="336" cy="115" r="6" fill="#ff6fa5"/><path d="M333 116L324 123L335 121z" fill="#ffd0e1"/></g></svg></a>
 <nav><a href="#how">How it works</a><a href="#shop">Services</a><a href="#work">My work</a><a href="#about">Contact</a><button class="cartbtn" id="open" aria-label="Open cart">Cart (<span id="count">0</span>)</button></nav>
 </header>
 <main id="top">
 <div class="hero"><div class="orb"></div>
 <div>
 <h1><span style="--d:0">Design</span> <span style="--d:1">that</span> <span style="--d:2">makes</span> <span style="--d:3">your</span> <span style="--d:4">business</span> <span style="--d:5">look</span> <span style="--d:6">established.</span></h1>
-<p>Logo and web design for small businesses in St. Petersburg, Florida. Pick a package, send your details, and get something you can be proud of.</p>
+<p>Logo and web design for everyone, anywhere in the world. Florida-based and fully online. Pick a package, send your details, and get something you can be proud of.</p>
 <div class="acts"><a class="cta" href="#shop">See services</a><a class="ghost" href="#work">See my work</a></div>
 <a class="scroll" href="#how"><b aria-hidden="true">↓</b><span>Scroll down to see how it works</span></a>
 </div></div>
@@ -149,7 +163,7 @@ footer{padding:2.5rem 1.4rem;text-align:center;color:var(--muted);border-top:1px
 <section id="how"><h2>How it works</h2><p class="sub">From your first order to your finished design, here is every step.</p>
 <ol class="steps">
 <li class="step rv" style="--i:0"><span class="num">1</span><div><h3>Choose your services</h3><p>Browse the services above and tap Add package on everything you want. You can pick more than one, like a logo and a website.</p></div></li>
-<li class="step rv" style="--i:0"><span class="num">2</span><div><h3>Send your order</h3><p>Open your cart and tap Send order. Pick Gmail or your email app, fill in your name and business, and press send. If the buttons don’t open, copy the order details and email them to me.</p></div></li>
+<li class="step rv" style="--i:0"><span class="num">2</span><div><h3>Send your order</h3><p>Open your cart, fill in your name, email and business, and tap Send order. Your order is sent right here on the site, and you’ll see a confirmation when it goes through. No email app needed.</p></div></li>
 <li class="step rv" style="--i:0"><span class="num">3</span><div><h3>I confirm the details</h3><p>I’ll reply by email, usually within a day, to confirm your packages, the price, and the timeline. I may ask a few questions about your business.</p></div></li>
 <li class="step rv" style="--i:0"><span class="num">4</span><div><h3>Agree and pay the deposit</h3><p>Once you’re happy with the plan, I’ll email the payment details. Work starts after a deposit of half the price. The rest is due when you approve the final version.</p></div></li>
 <li class="step rv" style="--i:0"><span class="num">5</span><div><h3>Send me your materials</h3><p>Email me what I need: your logo if you have one, business details, photos, colors you like, and examples of designs you love.</p></div></li>
@@ -157,7 +171,7 @@ footer{padding:2.5rem 1.4rem;text-align:center;color:var(--muted);border-top:1px
 <li class="step rv" style="--i:0"><span class="num">7</span><div><h3>Free revisions</h3><p>I’ll update the design based on your feedback until you’re happy. Revisions are free on every package.</p></div></li>
 <li class="step rv" style="--i:0"><span class="num">8</span><div><h3>Final delivery</h3><p>After you approve the design and the final payment is made, I send you the finished logo files or website files and help you get everything live.</p></div></li>
 </ol>
-<div class="card chk rv" style="--i:0"><h3>What to include in your first email</h3><ul><li>Your business name and what you do</li><li>The services you chose</li><li>Colors and styles you like</li><li>Your logo or photos, if you have them</li><li>Links to 2 or 3 designs you like</li><li>Your deadline, if you have one</li></ul></div>
+<div class="card chk rv" style="--i:0"><h3>What to have ready</h3><ul><li>Your business name and what you do</li><li>The services you chose</li><li>Colors and styles you like</li><li>Your logo or photos, if you have them</li><li>Links to 2 or 3 designs you like</li><li>Your deadline, if you have one</li></ul></div>
 <a class="cta" href="#shop">See services</a></section>
 <section id="shop" hidden><h2>Services</h2><p class="sub">Clear prices and free revisions. Add what you need and send your order.</p><div class="grid" id="grid"></div></section>
 <section id="work"><h2>My work</h2><p class="sub">Practice projects for imaginary businesses, showing a range of styles.</p><div class="grid">
@@ -166,17 +180,31 @@ footer{padding:2.5rem 1.4rem;text-align:center;color:var(--muted);border-top:1px
 <div class="card"><div class="pic lgbox" style="background:#ffe0ec"><svg class="lg" viewBox="0 0 120 120" role="img" aria-label="Bloom Florist logo"><g class="pet" fill="none" stroke="#b0125f" stroke-width="2.5"><ellipse cx="60" cy="26" rx="8" ry="15"/><ellipse cx="60" cy="26" rx="8" ry="15" transform="rotate(72 60 44)"/><ellipse cx="60" cy="26" rx="8" ry="15" transform="rotate(144 60 44)"/><ellipse cx="60" cy="26" rx="8" ry="15" transform="rotate(216 60 44)"/><ellipse cx="60" cy="26" rx="8" ry="15" transform="rotate(288 60 44)"/></g><g fill="none" stroke="#b0125f" stroke-width="2.5" stroke-linecap="round"><path d="M60 62v28"/><path d="M60 80c-14-1-19-8-19-14 12 0 19 5 19 14z"/></g><circle class="ctr" cx="60" cy="44" r="5" fill="#b0125f"/><text x="60" y="112" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="18" fill="#b0125f">Bloom</text></svg></div><div class="info"><h3>Bloom Florist</h3><p>Logo concept for a flower shop</p></div></div>
 </div></section>
 <section id="about"><h2>Contact</h2>
-<div class="about"><p>I design logos and code websites for small businesses in St. Petersburg, Florida: restaurants, salons, shops, and local services. Simple pricing, clear communication, and free revisions on every package.</p>
+<div class="about"><p>Frenchys is a Florida-based logo and web design studio that works with clients anywhere. From a clean, memorable logo to a fast, mobile-ready website, every project is built around your brand, with clear pricing, quick turnaround, and free revisions on every package. Whether you run a local shop, an online business, or are just getting started, you can order from anywhere and everything is handled by email, start to finish.</p>
 <p>Questions or a custom request? Email <a href="mailto:frenchycollins2010@gmail.com">frenchycollins2010@gmail.com</a> and I’ll reply within a day.</p></div></section>
 </main>
-<footer>© 2026 Frenchys</footer>
+<footer>© 2026 Frenchys · Florida-based, serving clients everywhere</footer>
 
 <aside id="drawer" aria-label="Shopping cart">
 <div class="row"><h2 style="font-size:1.2rem">Your cart</h2><button class="add" id="close">Close</button></div>
 <div id="items"></div>
 <div class="row"><strong>Total</strong><strong id="total">$0</strong></div>
-<button class="checkout" id="co">Send order</button>
-<p id="msg" role="status"></p>
+<form id="orderform" novalidate>
+<label class="fld">Your name<input id="f_name" name="name" autocomplete="name" required></label>
+<label class="fld">Your email<input id="f_email" name="email" type="email" inputmode="email" autocomplete="email" required></label>
+<label class="fld"><span>Business name <span class="opt">(optional)</span></span><input id="f_biz" name="business" autocomplete="organization"></label>
+<label class="fld"><span>Anything else I should know? <span class="opt">(optional)</span></span><textarea id="f_notes" name="notes" rows="3"></textarea></label>
+<input type="text" id="f_honey" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+<button class="checkout" id="co" type="submit">Send order</button>
+</form>
+<p id="msg" role="status" aria-live="polite"></p>
+<div id="done" hidden>
+<div class="ok" aria-hidden="true">&#10003;</div>
+<h3>Order sent!</h3>
+<p id="donetxt"></p>
+<p>I’ll email you to confirm your packages, the price, and the timeline. No payment is taken on this site.</p>
+<button class="checkout" id="doneclose" type="button">Done</button>
+</div>
 </aside>
 
 <script>
@@ -208,19 +236,39 @@ $('items').innerHTML=cart.length?cart.map((i,k)=>`<div class="line"><span>${P[i]
 document.addEventListener('click',e=>{
 const a=e.target.closest('.add[data-i]');if(a){cart.push(+a.dataset.i);render();$('drawer').classList.add('open');}
 const r=e.target.closest('.rm');if(r){cart.splice(+r.dataset.k,1);render();}});
-$('open').onclick=()=>$('drawer').classList.add('open');
+$('open').onclick=()=>{if(!$('done').hidden&&!cart.length)showForm();$('drawer').classList.add('open');};
 $('close').onclick=()=>$('drawer').classList.remove('open');
-$('co').onclick=()=>{
-if(!cart.length){$('msg').textContent='Add an item before checking out.';return;}
+const TO='frenchycollins2010@gmail.com';
+const form=$('orderform');
+function setErr(m){$('msg').textContent=m;$('msg').className=m?'err':'';}
+function showForm(){form.hidden=false;$('done').hidden=true;}
+form.addEventListener('submit',async e=>{
+e.preventDefault();setErr('');
+document.querySelectorAll('.fld').forEach(f=>f.classList.remove('bad'));
+if(!cart.length){setErr('Add an item before sending your order.');return;}
+const name=$('f_name').value.trim(),email=$('f_email').value.trim(),biz=$('f_biz').value.trim(),notes=$('f_notes').value.trim();
+if(!name){$('f_name').parentNode.classList.add('bad');setErr('Please enter your name.');$('f_name').focus();return;}
+if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){$('f_email').parentNode.classList.add('bad');setErr('Please enter a valid email so I can reply.');$('f_email').focus();return;}
+if($('f_honey').value)return;
 const list=cart.map(i=>'- '+P[i].n+' ($'+P[i].p+')').join('\n');
 const total=cart.reduce((s,i)=>s+P[i].p,0);
-const body='Hi! I’d like to order:\n'+list+'\n\nTotal: $'+total+'\n\nMy name:\nMy business:\nAnything else I should know:';
-const mail='mailto:frenchycollins2010@gmail.com?subject='+encodeURIComponent('Order from Frenchys')+'&body='+encodeURIComponent(body);
-const gm='https://mail.google.com/mail/?view=cm&fs=1&to=frenchycollins2010%40gmail.com&su='+encodeURIComponent('Order from Frenchys')+'&body='+encodeURIComponent(body);
-$('msg').innerHTML='<strong>Send your order:</strong><br><a href="'+gm+'" target="_blank" rel="noopener">Open in Gmail</a><br><a href="'+mail+'">Open in my email app</a><br><button class="add" id="cp" type="button">Copy order details</button><br><textarea id="ord" readonly rows="6" style="width:100%;margin-top:.5rem"></textarea><br>If those don’t open, copy the details and email them to frenchycollins2010@gmail.com. No payment is taken on this site. We’ll confirm details and payment by email before any work starts.';
-$('ord').value=body;
-$('cp').onclick=()=>{$('ord').select();try{navigator.clipboard.writeText(body)}catch(e){document.execCommand('copy')}$('cp').textContent='Copied';};
-};
+const btn=$('co');btn.disabled=true;btn.textContent='Sending…';
+try{
+const res=await fetch('https://formsubmit.co/ajax/'+TO,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+body:JSON.stringify({_subject:'Order from Frenchys',_template:'table',_captcha:'false',name:name,email:email,business:biz||'(not given)',order:list,total:'$'+total,notes:notes||'(none)'})});
+const data=await res.json().catch(()=>({}));
+if(res.ok&&(data.success===true||data.success==='true')){
+$('donetxt').textContent='Thanks, '+name+'! Your order for $'+total+' is in. I’ll reply to '+email+'.';
+form.hidden=true;$('done').hidden=false;setErr('');
+cart.length=0;render();form.reset();
+}else throw new Error('send failed');
+}catch(err){
+const body='Hi! I’d like to order:\n'+list+'\n\nTotal: $'+total+'\n\nMy name: '+name+'\nMy business: '+biz+'\nAnything else: '+notes;
+$('msg').className='err';
+$('msg').innerHTML='Sorry, your order didn’t go through. Please try again in a moment. If it keeps failing, <a href="mailto:'+TO+'?subject='+encodeURIComponent('Order from Frenchys')+'&body='+encodeURIComponent(body)+'">email it to me instead</a>.';
+}finally{btn.disabled=false;btn.textContent='Send order';}
+});
+$('doneclose').onclick=()=>{$('drawer').classList.remove('open');setTimeout(showForm,400);};
 render();
 document.addEventListener('click',e=>{if(e.target.closest('a[href="#shop"]'))$('shop').hidden=false;});
 if(location.hash==='#shop')$('shop').hidden=false;
