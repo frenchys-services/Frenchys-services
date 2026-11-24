@@ -60,7 +60,7 @@ nav{display:flex;gap:1.5rem;align-items:center}nav a{color:var(--muted);text-dec
 section{max-width:1040px;margin:auto;padding:6rem 1.4rem}
 section h2{font-size:clamp(1.7rem,4.5vw,2.4rem);margin-bottom:.5rem}
 .sub{color:var(--muted);margin:0 0 2rem;max-width:34rem}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1.1rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.1rem}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:transform .3s,border-color .3s,box-shadow .3s}
 .card:hover{transform:translateY(-12px);border-color:var(--accent);box-shadow:0 26px 44px -16px color-mix(in srgb,var(--accent) 70%,transparent)}
 .pic{position:relative;overflow:hidden;height:130px;display:grid;place-items:center;color:var(--accent);background:color-mix(in srgb,var(--accent) 7%,transparent)}
@@ -93,6 +93,10 @@ section h2{font-size:clamp(1.7rem,4.5vw,2.4rem);margin-bottom:.5rem}
 .rv.in{opacity:1;animation:rise .8s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:calc(var(--i)*80ms)}
 .info{padding:1rem 1.1rem 1.2rem}
 .info h3{font-size:1rem}.info p{margin:.3rem 0 1rem;color:var(--muted);font-size:.92rem}
+.info .short{color:var(--ink);font-weight:600;margin-bottom:.5rem}
+.info .mean{margin:0 0 .6rem}
+.info .for{margin:0 0 1rem;font-size:.86rem;padding-top:.6rem;border-top:1px dashed var(--line)}
+.info .for b{color:var(--accent)}
 .row{display:flex;justify-content:space-between;align-items:center}
 .row strong{font:600 1.05rem 'Sora',sans-serif;background:color-mix(in srgb,var(--accent) 10%,transparent);color:var(--accent);padding:.15rem .7rem;border-radius:999px}
 .add{background:none;border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:.35rem .95rem;font-weight:600;font-size:.88rem;transition:background .2s,color .2s,border-color .2s}
@@ -191,7 +195,7 @@ footer{padding:2.5rem 1.4rem;text-align:center;color:var(--muted);border-top:1px
 </ol>
 <div class="card chk rv" style="--i:0"><h3>What to have ready</h3><ul><li>Your business name and what you do</li><li>The services you chose</li><li>Colors and styles you like</li><li>Your logo or photos, if you have them</li><li>Links to 2 or 3 designs you like</li><li>Your deadline, if you have one</li></ul></div>
 <a class="cta" href="#shop">See services</a></section>
-<section id="shop" hidden><h2>Services</h2><p class="sub">Clear prices and free revisions. Add what you need and send your order.</p><div class="grid" id="grid"></div></section>
+<section id="shop" hidden><h2>Services</h2><p class="sub">Not sure what a package means? Each one explains what you get and who it is for. Add what you need and send your order.</p><div class="grid" id="grid"></div><p class="note">Every package includes free revisions. I confirm your packages, price and timeline by email before any payment, and work starts after a deposit of half the price.</p></section>
 <section id="work"><h2>My work</h2><p class="sub">Practice projects for imaginary businesses, showing a range of styles.</p><div class="grid">
 <div class="card"><div class="pic lgbox" style="background:#ffd60a"><svg class="lg" viewBox="0 0 120 120" role="img" aria-label="Rise Fitness logo"><path class="sun" d="M20 80a40 40 0 0 1 80 0z" fill="#111"/><rect x="12" y="87" width="96" height="5" fill="#111"/><g stroke="#111" stroke-width="5" stroke-linecap="round"><path class="ray" d="M60 20v8M24 36l6 5M96 36l-6 5"/></g><text x="60" y="112" text-anchor="middle" font-family="Sora,sans-serif" font-weight="700" font-size="14" fill="#111">RISE</text></svg></div><div class="info"><h3>Rise Fitness</h3><p>Logo concept for a gym</p></div></div>
 <div class="card"><div class="pic lgbox" style="background:#fff1d6"><svg class="lg" viewBox="0 0 120 120" role="img" aria-label="Casa Taco logo"><g class="taco"><path d="M10 82a50 50 0 0 1 100 0z" fill="#f4a62a" stroke="#7a3e00" stroke-width="3" stroke-linejoin="round"/><path class="let" d="M22 66q7-10 14 0t14 0 14 0 14 0 14 0" fill="none" stroke="#1f8a4c" stroke-width="6" stroke-linecap="round"/><circle cx="38" cy="74" r="4" fill="#d62828"/><circle cx="60" cy="72" r="4" fill="#d62828"/><circle cx="82" cy="74" r="4" fill="#d62828"/></g><text x="60" y="108" text-anchor="middle" font-family="Sora,sans-serif" font-weight="700" font-size="13" fill="#7a3e00">Casa Taco</text></svg></div><div class="info"><h3>Casa Taco</h3><p>Logo concept for a taco truck</p></div></div>
@@ -234,14 +238,14 @@ footer{padding:2.5rem 1.4rem;text-align:center;color:var(--muted);border-top:1px
 
 <script>
 const P=[
-{n:'Quick Fix',d:'Fix a layout, bug, or slow page',p:30},
-{n:'Landing Page',d:'One polished page, mobile-ready',p:60},
-{n:'Starter Site',d:'3 pages: home, about, contact',p:90},
-{n:'Business Site',d:'5 pages with a contact form',p:180},
-{n:'Online Store',d:'Product pages and a working cart',p:300},
-{n:'Monthly Care',d:'Updates and fixes each month',p:25},
-{n:'Logo Design',d:'A simple, clean logo with 2 concepts',p:40},
-{n:'Logo and Site Bundle',d:'A logo plus a 3-page website',p:120}];
+{n:'Quick Fix',d:'Fix a layout, bug, or slow page',m:'A small repair on a site you already have. I find the problem and fix it, like a broken layout, a bug, or a page that loads too slowly.',g:'Sites that look wrong on phones, have a glitch, or feel slow.',p:30},
+{n:'Landing Page',d:'One polished page, mobile-ready',m:'One single web page built to do one job, such as getting people to call you, book, or sign up. It works well on phones.',g:'A new business, a sale, or an event.',p:60},
+{n:'Starter Site',d:'3 pages: home, about, contact',m:'A small website with three pages: a Home page that introduces you, an About page that tells your story, and a Contact page so people can reach you.',g:'Getting your business online for the first time.',p:90},
+{n:'Business Site',d:'5 pages with a contact form',m:'A bigger website with five pages and a contact form, so customers can send you a message right from the site.',g:'Businesses with several services to explain.',p:180},
+{n:'Online Store',d:'Product pages and a working cart',m:'A website where each product has its own page and customers can add items to a cart.',g:'Selling products online.',p:300},
+{n:'Monthly Care',d:'Updates and fixes each month',m:"Ongoing help for your website. Each month I make updates and fix problems so you don't have to.",g:"Owners who don't have time to look after their site.",p:25},
+{n:'Logo Design',d:'A simple, clean logo with 2 concepts',m:'A simple, clean logo for your business. I design 2 different concepts so you can pick the direction you like best.',g:'New businesses or anyone who wants a fresh look.',p:40},
+{n:'Logo and Site Bundle',d:'A logo plus a 3-page website',m:'A logo and a 3-page website (Home, About, Contact) designed together so everything looks like one brand. It costs less than buying the logo and Starter Site separately.',g:'Starting a business from scratch.',p:120}];
 const S=[
 '<g class="a-rot"><path d="M70 12a20 20 0 0 0-18 28L14 78l8 8 38-38a20 20 0 0 0 28-18l-12 12-10-2-2-10z" fill="currentColor"/><circle class="w" cx="21" cy="79" r="3.5"/></g><path class="a-spark" d="M82 10l3 8 8 3-8 3-3 8-3-8-8-3 8-3z" fill="currentColor"/>',
 '<rect x="20" y="8" width="60" height="84" rx="8" fill="currentColor"/><rect class="w" x="28" y="18" width="44" height="26" rx="4"/><rect class="w a-line" style="--n:0" x="28" y="52" width="44" height="6" rx="3"/><rect class="w a-line" style="--n:1" x="28" y="64" width="30" height="6" rx="3"/><rect class="w" x="28" y="76" width="22" height="8" rx="4" opacity=".9"/>',
@@ -253,7 +257,7 @@ const S=[
 '<rect x="30" y="28" width="58" height="62" rx="9" fill="currentColor" opacity=".7"/><rect class="w a-line" style="--n:0" x="40" y="62" width="38" height="6" rx="3"/><rect class="w a-line" style="--n:1" x="40" y="74" width="24" height="6" rx="3"/><g class="a-pop"><circle cx="30" cy="30" r="22" fill="currentColor"/><circle class="w" cx="30" cy="30" r="8"/></g>'];
 const cart=[];
 const $=id=>document.getElementById(id);
-$('grid').innerHTML=P.map((x,i)=>`<article class="card rv" style="--i:${i%4}"><div class="pic"><svg viewBox="0 0 100 100" aria-hidden="true">${S[i]}</svg></div><div class="info"><h3>${x.n}</h3><p>${x.d}</p><div class="row"><strong>$${x.p}</strong><button class="add" data-i="${i}">Add package</button></div></div></article>`).join('');
+$('grid').innerHTML=P.map((x,i)=>`<article class="card rv" style="--i:${i%4}"><div class="pic"><svg viewBox="0 0 100 100" aria-hidden="true">${S[i]}</svg></div><div class="info"><h3>${x.n}</h3><p class="short">${x.d}</p><p class="mean">${x.m}</p><p class="for"><b>Good for:</b> ${x.g}</p><div class="row"><strong>$${x.p}</strong><button class="add" data-i="${i}">Add package</button></div></div></article>`).join('');
 function render(){
 $('count').textContent=cart.length;
 $('total').textContent='$'+cart.reduce((s,i)=>s+P[i].p,0);
