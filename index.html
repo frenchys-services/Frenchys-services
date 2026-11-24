@@ -236,6 +236,7 @@ footer{padding:2.5rem 1.4rem;text-align:center;color:var(--muted);border-top:1px
 </div>
 </aside>
 
+<iframe name="sendframe" id="sendframe" title="" hidden style="display:none"></iframe>
 <script>
 const P=[
 {n:'Quick Fix',d:'Fix a layout, bug, or slow page',m:'A small repair on a site you already have. I find the problem and fix it, like a broken layout, a bug, or a page that loads too slowly.',g:'Sites that look wrong on phones, have a glitch, or feel slow.',p:30},
@@ -293,6 +294,17 @@ $('drawer').addEventListener('paste',e=>{const fl=[...(e.clipboardData?e.clipboa
 $('filelist').addEventListener('click',e=>{const b=e.target.closest('.rmf');if(b){files.splice(+b.dataset.f,1);renderFiles();}});
 function setErr(m){$('msg').textContent=m;$('msg').className=m?'err':'';}
 function showForm(){form.hidden=false;$('done').hidden=true;}
+function sendWithFiles(fields){return new Promise((resolve,reject)=>{
+const fr=$('sendframe'),f=document.createElement('form');
+f.method='POST';f.action='https://formsubmit.co/'+TO;f.enctype='multipart/form-data';f.target='sendframe';f.hidden=true;
+for(const k in fields){const i=document.createElement('input');i.type='hidden';i.name=k;i.value=fields[k];f.appendChild(i);}
+const fi=document.createElement('input');fi.type='file';fi.name='attachment';fi.multiple=true;
+try{const dt=new DataTransfer();files.forEach(x=>dt.items.add(x));fi.files=dt.files;}catch(e){return reject(new Error('this browser could not attach the pictures'));}
+f.appendChild(fi);document.body.appendChild(f);
+const done=()=>{clearTimeout(tm);fr.onload=null;f.remove();};
+const tm=setTimeout(()=>{done();reject(new Error('timed out after 30 seconds'));},30000);
+fr.onload=()=>{done();resolve();};
+f.submit();});}
 form.addEventListener('submit',async e=>{
 e.preventDefault();setErr('');
 document.querySelectorAll('.fld').forEach(f=>f.classList.remove('bad'));
@@ -305,18 +317,18 @@ const list=cart.map(i=>'- '+P[i].n+' ($'+P[i].p+')').join('\n');
 const total=cart.reduce((s,i)=>s+P[i].p,0);
 const btn=$('co');btn.disabled=true;btn.textContent='Sending…';
 try{
-const fd=new FormData();
 const fields={_subject:'Order from Frenchys',_template:'table',_captcha:'false',name:name,email:email,business:biz||'(not given)',order:list,total:'$'+total,design_links:links||'(none)',colors_and_style:style||'(none)',current_site:site||'(none)',deadline:deadline||'(none)',notes:notes||'(none)'};
-for(const k in fields)fd.append(k,fields[k]);
-files.forEach(f=>fd.append('attachment',f,f.name));
+if(files.length){await sendWithFiles(fields);}
+else{
+const fd=new FormData();for(const k in fields)fd.append(k,fields[k]);
 const ctl=new AbortController();const tm=setTimeout(()=>ctl.abort(),15000);
 const res=await fetch('https://formsubmit.co/ajax/'+TO,{method:'POST',signal:ctl.signal,headers:{'Accept':'application/json'},body:fd});
 clearTimeout(tm);const data=await res.json().catch(()=>({}));
-if(res.ok&&(data.success===true||data.success==='true')){
+if(!(res.ok&&(data.success===true||data.success==='true')))throw new Error(data.message||('HTTP '+res.status));
+}
 $('donetxt').textContent='Thanks, '+name+'! Your order for $'+total+' is in. I’ll reply to '+email+'.';
 form.hidden=true;$('done').hidden=false;setErr('');
 cart.length=0;render();form.reset();files.length=0;renderFiles();
-}else throw new Error(data.message||('HTTP '+res.status));
 }catch(err){
 const why=(err&&err.name==='AbortError'?'timed out after 15 seconds':String(err&&err.message||err)).replace(/[<>&]/g,'');
 const body='Hi! I’d like to order:\n'+list+'\n\nTotal: $'+total+'\n\nMy name: '+name+'\nMy business: '+biz+'\nDesign links: '+links+'\nColors and style: '+style+'\nCurrent site: '+site+'\nDeadline: '+deadline+'\nAnything else: '+notes+(files.length?'\n\n(Please attach your pictures to this email.)':'');
