@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!--
+  CHANGELOG (update the footer text id="ver" and the meta below every time you change the site)
+  1.1  Nov 24, 2026  Fixed photo uploads: real send confirmation, HEIC photos converted, longer timeout. Added version number.
+  1.0  Original version
+-->
 <meta charset="utf-8">
+<meta name="version" content="1.1">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Frenchys – Logo and web design for everyone</title>
 <meta name="description" content="Frenchys is a Florida-based logo and web design studio working with clients anywhere. Clear pricing, fast turnaround and free revisions on every package.">
@@ -133,6 +139,7 @@ section h2{font-size:clamp(1.7rem,4.5vw,2.4rem);margin-bottom:.5rem}
 @media (max-width:560px){header{flex-wrap:wrap;gap:.5rem}nav{gap:.9rem;flex-wrap:wrap;font-size:.85rem}}
 .note{color:var(--muted);font-size:.92rem;margin:1.3rem 0 0}
 .about{max-width:38rem;display:grid;gap:1rem}.about a{color:var(--accent);font-weight:600}
+.ver{display:inline-block;margin-top:.5rem;opacity:.8;font-size:.8rem}
 footer{padding:2.5rem 1.4rem;text-align:center;color:var(--muted);border-top:1px solid var(--line);font-size:.92rem}
 #drawer{position:fixed;top:0;right:0;bottom:0;width:min(380px,100%);background:var(--surface);border-left:1px solid var(--line);transform:translateX(100%);transition:transform .35s cubic-bezier(.2,.8,.2,1);z-index:20;display:flex;flex-direction:column;overflow:auto;padding:calc(1rem + env(safe-area-inset-top,0px)) 1.3rem calc(1rem + env(safe-area-inset-bottom,0px))}
 #drawer.open{transform:none}
@@ -205,7 +212,7 @@ footer{padding:2.5rem 1.4rem;text-align:center;color:var(--muted);border-top:1px
 <div class="about"><p>Frenchys is a Florida-based logo and web design studio that works with clients anywhere. From a clean, memorable logo to a fast, mobile-ready website, every project is built around your brand, with clear pricing, quick turnaround, and free revisions on every package. Whether you run a local shop, an online business, or are just getting started, you can order from anywhere and everything is handled by email, start to finish.</p>
 <p>Questions or a custom request? Email <a href="mailto:frenchycollins2010@gmail.com">frenchycollins2010@gmail.com</a> and I’ll reply within a day.</p></div></section>
 </main>
-<footer>© 2026 Frenchys · Florida-based, serving clients everywhere</footer>
+<footer>© 2026 Frenchys · Florida-based, serving clients everywhere<br><small id="ver" class="ver">Version 1.1 · Updated Nov 24, 2026</small></footer>
 
 <aside id="drawer" aria-label="Shopping cart">
 <div class="row"><h2 style="font-size:1.2rem">Your cart</h2><button class="add" id="close">Close</button></div>
@@ -238,6 +245,7 @@ footer{padding:2.5rem 1.4rem;text-align:center;color:var(--muted);border-top:1px
 
 <iframe name="sendframe" id="sendframe" title="" hidden style="display:none"></iframe>
 <script>
+if(!(window.top!==window&&location.hash==='#sent')){
 const P=[
 {n:'Quick Fix',d:'Fix a layout, bug, or slow page',m:'A small repair on a site you already have. I find the problem and fix it, like a broken layout, a bug, or a page that loads too slowly.',g:'Sites that look wrong on phones, have a glitch, or feel slow.',p:30},
 {n:'Landing Page',d:'One polished page, mobile-ready',m:'One single web page built to do one job, such as getting people to call you, book, or sign up. It works well on phones.',g:'A new business, a sale, or an event.',p:60},
@@ -273,12 +281,13 @@ const form=$('orderform');
 const files=[],MAXB=5*1024*1024,MAXN=6;
 const fmt=n=>n<1048576?Math.max(1,Math.round(n/1024))+' KB':(n/1048576).toFixed(1)+' MB';
 function shrink(f){return new Promise(res=>{
-if(!/^image\/(jpeg|png|webp)$/.test(f.type)||f.size<400000)return res(f);
+const heic=/\.(heic|heif)$/i.test(f.name)||/^image\/hei[cf]$/.test(f.type);
+if(!(/^image\/(jpeg|png|webp)$/.test(f.type)||heic)||(f.size<400000&&!heic))return res(f);
 const img=new Image(),u=URL.createObjectURL(f);
 img.onload=()=>{const k=Math.min(1,1600/Math.max(img.width,img.height)),c=document.createElement('canvas');
 c.width=Math.round(img.width*k);c.height=Math.round(img.height*k);
 const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.drawImage(img,0,0,c.width,c.height);URL.revokeObjectURL(u);
-c.toBlob(b=>res(b&&b.size<f.size?new File([b],f.name.replace(/\.\w+$/,'')+'.jpg',{type:'image/jpeg'}):f),'image/jpeg',.82)};
+c.toBlob(b=>res(b&&(heic||b.size<f.size)?new File([b],f.name.replace(/\.\w+$/,'')+'.jpg',{type:'image/jpeg'}):f),'image/jpeg',.82)};
 img.onerror=()=>{URL.revokeObjectURL(u);res(f)};img.src=u;});}
 function renderFiles(){$('filelist').innerHTML=files.map((f,k)=>'<div class="fl"><span>'+f.name.replace(/</g,'&lt;')+' · '+fmt(f.size)+'</span><button type="button" class="rmf" data-f="'+k+'" aria-label="Remove file">Remove</button></div>').join('');}
 async function addFiles(list){
@@ -296,14 +305,21 @@ function setErr(m){$('msg').textContent=m;$('msg').className=m?'err':'';}
 function showForm(){form.hidden=false;$('done').hidden=true;}
 function sendWithFiles(fields){return new Promise((resolve,reject)=>{
 const fr=$('sendframe'),f=document.createElement('form');
+const canVerify=/^https?:$/.test(location.protocol);
+if(canVerify)fields._next=location.origin+location.pathname+'#sent';
 f.method='POST';f.action='https://formsubmit.co/'+TO;f.enctype='multipart/form-data';f.target='sendframe';f.hidden=true;
 for(const k in fields){const i=document.createElement('input');i.type='hidden';i.name=k;i.value=fields[k];f.appendChild(i);}
 const fi=document.createElement('input');fi.type='file';fi.name='attachment';fi.multiple=true;
 try{const dt=new DataTransfer();files.forEach(x=>dt.items.add(x));fi.files=dt.files;}catch(e){return reject(new Error('this browser could not attach the pictures'));}
 f.appendChild(fi);document.body.appendChild(f);
+let first=true;
 const done=()=>{clearTimeout(tm);fr.onload=null;f.remove();};
-const tm=setTimeout(()=>{done();reject(new Error('timed out after 30 seconds'));},30000);
-fr.onload=()=>{done();resolve();};
+const tm=setTimeout(()=>{done();reject(new Error('timed out after 60 seconds'));},60000);
+fr.onload=()=>{
+if(first&&!canVerify){first=false;done();return resolve();}
+let ok=false;try{ok=fr.contentWindow.location.hash==='#sent';}catch(e){}
+done();
+if(ok)resolve();else reject(new Error('the pictures were not confirmed as received'));};
 f.submit();});}
 form.addEventListener('submit',async e=>{
 e.preventDefault();setErr('');
@@ -343,6 +359,7 @@ document.addEventListener('click',e=>{if(e.target.closest('a[href="#shop"]'))$('
 if(location.hash==='#shop')$('shop').hidden=false;
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+}
 </script>
 </body>
 </html>
