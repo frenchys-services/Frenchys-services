@@ -316,11 +316,12 @@ if(res.ok&&(data.success===true||data.success==='true')){
 $('donetxt').textContent='Thanks, '+name+'! Your order for $'+total+' is in. I’ll reply to '+email+'.';
 form.hidden=true;$('done').hidden=false;setErr('');
 cart.length=0;render();form.reset();files.length=0;renderFiles();
-}else throw new Error('send failed');
+}else throw new Error(data.message||('HTTP '+res.status));
 }catch(err){
+const why=(err&&err.name==='AbortError'?'timed out after 15 seconds':String(err&&err.message||err)).replace(/[<>&]/g,'');
 const body='Hi! I’d like to order:\n'+list+'\n\nTotal: $'+total+'\n\nMy name: '+name+'\nMy business: '+biz+'\nDesign links: '+links+'\nColors and style: '+style+'\nCurrent site: '+site+'\nDeadline: '+deadline+'\nAnything else: '+notes+(files.length?'\n\n(Please attach your pictures to this email.)':'');
 $('msg').className='err';
-$('msg').innerHTML='Sorry, your order didn’t go through. Please try again in a moment. If it keeps failing, <a href="mailto:'+TO+'?subject='+encodeURIComponent('Order from Frenchys')+'&body='+encodeURIComponent(body)+'">email it to me instead</a>.';
+$('msg').innerHTML='Sorry, your order didn’t go through. Please try again in a moment. If it keeps failing, <a href="mailto:'+TO+'?subject='+encodeURIComponent('Order from Frenchys')+'&body='+encodeURIComponent(body)+'">email it to me instead</a>. <small>(Details: '+why+')</small>';
 }finally{btn.disabled=false;btn.textContent='Send order';}
 });
 $('doneclose').onclick=()=>{$('drawer').classList.remove('open');setTimeout(showForm,400);};
