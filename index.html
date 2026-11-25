@@ -3,16 +3,29 @@
 <head>
 <!--
   CHANGELOG (update the footer text id="ver" and the meta below every time you change the site)
+  1.8  Nov 24, 2026  Interactive My work: filter chips, tilt cards, viewer with a mini example website (desktop/phone), logo and colors (backgrounds, business card, T-shirt, shop sign, copy colors), design process animation, and an Order something like this button. Project data lives in the PR list in the script.
+  1.7  Nov 24, 2026  Added FAQ, package comparison table, floating View cart button, About facts, share image tags and local business info, empty-until-filled reviews section.
+  1.6  Nov 24, 2026  Added the Updates tab (nav link, section and version badge). The log text lives in the LOG list in the script: add new entries at the top of it.
+  1.5  Nov 24, 2026  Overhauled thanks.html (receipt, greeting, next steps, materials email, confetti, share link). Orders now save name, email and items in the browser for it.
+  1.4  Nov 24, 2026  Added animations (cart bump, Added button, price count, focus glow, field shake, sending spinner, more scroll reveals). Adding to the cart no longer opens it.
   1.3  Nov 24, 2026  Added thanks.html thank-you page; orders now redirect there (for Google Ads conversion tracking).
   1.2  Nov 24, 2026  Undid the strict send check from 1.1 (it blocked orders). Kept HEIC conversion and longer timeout.
   1.1  Nov 24, 2026  Fixed photo uploads: real send confirmation, HEIC photos converted, longer timeout. Added version number.
   1.0  Original version
 -->
 <meta charset="utf-8">
-<meta name="version" content="1.3">
+<meta name="version" content="1.8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Frenchys – Logo and web design for everyone</title>
-<meta name="description" content="Frenchys is a Florida-based logo and web design studio working with clients anywhere. Clear pricing, fast turnaround and free revisions on every package.">
+<title>Frenchys – Logo and web design in St. Petersburg, FL</title>
+<meta name="theme-color" content="#3355ff">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Frenchys – Logo and web design in St. Petersburg, FL">
+<meta property="og:description" content="Clear pricing, fast turnaround and free revisions on every package. Order from anywhere.">
+<!-- SHARE IMAGE: replace YOUR-DOMAIN below with your real web address once the site is live (it must be a full https:// link), and upload og-image.png next to index.html. -->
+<meta property="og:image" content="https://YOUR-DOMAIN/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Frenchys","description":"Logo and web design studio based in St. Petersburg, Florida, working with clients anywhere.","email":"frenchycollins2010@gmail.com","areaServed":"Worldwide","address":{"@type":"PostalAddress","addressLocality":"St. Petersburg","addressRegion":"FL","addressCountry":"US"},"priceRange":"$25-$300","serviceType":["Logo design","Web design"]}</script>
+<meta name="description" content="Frenchys is a logo and web design studio in St. Petersburg, Florida, working with clients anywhere. Clear pricing, fast turnaround and free revisions on every package.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%B4%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -170,6 +183,99 @@ footer{padding:2.5rem 1.4rem;text-align:center;color:var(--muted);border-top:1px
 #done .ok{width:64px;height:64px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;margin:0 auto 1rem;font:700 2rem 'Sora',sans-serif}
 #done h3{font:700 1.4rem 'Sora',sans-serif;margin:0 0 .5rem}
 #done p{color:var(--muted);margin:.4rem 0}
+.faq{max-width:42rem;display:grid;gap:.7rem}
+.faq details{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:0 1.2rem;transition:border-color .25s}
+.faq details[open]{border-color:var(--accent)}
+.faq summary{cursor:pointer;list-style:none;font:600 1rem 'Sora',sans-serif;padding:1rem 0;display:flex;justify-content:space-between;gap:1rem;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";flex:none;width:9px;height:9px;border-right:2.5px solid var(--accent);border-bottom:2.5px solid var(--accent);transform:rotate(45deg);transition:transform .25s}
+.faq details[open] summary::after{transform:rotate(-135deg)}
+.faq details p{margin:0 0 1rem;color:var(--muted)}
+.facts{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.5rem}
+.facts li{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:.3rem .9rem;font-size:.9rem;font-weight:500}
+.cmph{font-size:1.2rem;margin:2.6rem 0 1rem}
+.cmpwrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;background:var(--surface)}
+.cmp{width:100%;min-width:36rem;border-collapse:collapse;font-size:.92rem}
+.cmp th,.cmp td{text-align:left;padding:.8rem 1rem;border-bottom:1px solid var(--line);vertical-align:top}
+.cmp tr:last-child td{border-bottom:0}
+.cmp th{font:600 .85rem 'Sora',sans-serif;color:var(--muted)}
+.cmp td:first-child{font-weight:600}
+.cmp .pr{font:600 1rem 'Sora',sans-serif;color:var(--accent);white-space:nowrap}
+.cmp td:nth-child(3),.cmp td:nth-child(4){color:var(--muted)}
+.quote{margin:0;padding:1.3rem}.quote blockquote{margin:0 0 .8rem;font-size:1.05rem}.quote figcaption{color:var(--muted);font-size:.9rem;font-weight:600}
+.fab{position:fixed;right:1rem;bottom:calc(1rem + env(safe-area-inset-bottom,0px));z-index:15;background:var(--accent);color:var(--on-accent);border:0;border-radius:999px;padding:.85rem 1.3rem;font-weight:600;box-shadow:0 12px 28px -10px var(--accent);transform:translateY(160%);opacity:0;visibility:hidden;transition:transform .4s cubic-bezier(.2,.8,.2,1),opacity .3s,visibility .4s}
+.fab.show{transform:none;opacity:1;visibility:visible}
+.fab.pop{animation:cartpop .5s cubic-bezier(.2,.8,.2,1)}
+details.rv.in{animation-name:rise-soft}
+#wgrid{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin:0 0 1.2rem}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:.4rem 1.1rem;font-weight:600;font-size:.9rem;transition:background .2s,color .2s,border-color .2s}
+.chip:hover{border-color:var(--ink)}.chip.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+#work>.chips{margin-bottom:1.6rem}
+.card.wcard{cursor:pointer;transform:perspective(800px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .12s ease-out,border-color .3s,box-shadow .3s}
+.card.wcard:hover{transform:perspective(800px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-8px)}
+.hint{color:var(--accent)!important;font-weight:600;font-size:.85rem!important;margin:.6rem 0 0!important}
+.shot{width:74%;height:104px;border-radius:9px 9px 0 0;overflow:hidden;box-shadow:0 12px 22px -10px rgba(0,0,0,.45);background:#fff;display:flex;flex-direction:column;align-self:end}
+.sbar{display:flex;gap:4px;padding:5px 7px;background:#e9ebf1}.sbar i{width:6px;height:6px;border-radius:50%;background:#aab0c0}
+.sh{flex:1;display:grid;place-items:center;align-content:center;gap:7px;padding:6px;text-align:center}.sh b{font-size:1rem;line-height:1}.sh u{display:block;width:46px;height:10px;border-radius:6px}
+.wvb{position:fixed;inset:0;background:rgba(5,8,18,.6);backdrop-filter:blur(4px);z-index:30;opacity:0;transition:opacity .3s}.wvb.open{opacity:1}
+.wv{position:fixed;inset:0;z-index:31;background:var(--bg);display:flex;flex-direction:column;opacity:0;transform:translateY(24px) scale(.98);transition:transform .35s cubic-bezier(.2,.8,.2,1),opacity .25s;padding-top:env(safe-area-inset-top,0px)}
+.wv.open{opacity:1;transform:none}
+.wv[hidden],.wvb[hidden],.pane[hidden],.dev[hidden]{display:none!important}
+@media (min-width:820px){.wv{inset:3vh 6vw;border-radius:18px;border:1px solid var(--line);overflow:hidden;padding-top:0}}
+.wv-bar{display:flex;align-items:center;gap:.6rem;padding:.6rem .9rem;border-bottom:1px solid var(--line);background:var(--surface)}
+.dots{display:flex;gap:6px}.dots i{width:11px;height:11px;border-radius:50%;background:#ff5f57}.dots i:nth-child(2){background:#febc2e}.dots i:nth-child(3){background:#28c840}
+.url{flex:1;min-width:0;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:.3rem .9rem;font-size:.85rem;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ib{flex:none;background:none;border:1px solid var(--line);color:var(--ink);width:36px;height:36px;border-radius:50%;font-size:1.3rem;line-height:1;display:grid;place-items:center}.ib:hover{border-color:var(--ink)}
+.wv-tabs{display:flex;gap:.4rem;padding:.6rem .9rem;border-bottom:1px solid var(--line);overflow-x:auto;align-items:center}
+.tab{flex:none;background:none;border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:.4rem 1rem;font-weight:600;font-size:.9rem;white-space:nowrap}.tab.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.dev{margin-left:auto;display:flex;gap:.4rem;padding-left:.6rem}
+.wv-body{flex:1;min-height:0;position:relative;overflow:auto}
+#p_site{height:100%;display:grid;padding:.6rem;background:color-mix(in srgb,var(--ink) 6%,var(--bg))}
+.frame{margin:auto;width:100%;height:100%;transition:width .4s cubic-bezier(.2,.8,.2,1);border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+.frame.phone{width:390px;max-width:100%}.frame iframe{width:100%;height:100%;border:0;display:block}
+#p_brand,#p_proc{max-width:44rem;margin:auto;padding:1.2rem;display:grid;gap:1rem}
+#p_brand .sub,#p_proc .sub{margin:0}#p_brand .note{margin:0}
+.stage{display:grid;place-items:center;min-height:300px;border-radius:16px;border:1px solid var(--line);padding:1.5rem;background:color-mix(in srgb,var(--ink) 7%,var(--surface));transition:background .35s;overflow:hidden}
+.stage .lg{width:min(55vw,240px);height:auto}
+.sw{display:flex;flex-wrap:wrap;gap:.6rem}
+.sw button{display:flex;align-items:center;gap:.6rem;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:.35rem .9rem .35rem .35rem;color:var(--muted);font-size:.8rem;text-align:left}
+.sw button:hover{border-color:var(--ink)}.sw i{width:36px;height:36px;border-radius:8px;border:1px solid var(--line)}.sw b{display:block;color:var(--ink);font-size:.85rem}
+.mk-card{width:min(88%,330px);aspect-ratio:1.75;border-radius:10px;box-shadow:0 18px 30px -14px rgba(0,0,0,.5);padding:14px;display:flex;gap:12px;align-items:center;background:var(--mb);color:var(--tx);border:1px solid color-mix(in srgb,var(--tx) 25%,transparent)}
+.mk-card .lg{width:78px;flex:none}.mk-card b{display:block;font:700 1.05rem var(--mf)}.mk-card span{display:block;font-size:.75rem;opacity:.85}
+.mk-shirt{position:relative;width:min(80%,280px)}.mk-shirt svg{display:block;width:100%;filter:drop-shadow(0 14px 14px rgba(0,0,0,.25))}
+.stage .mk-shirt .lg{position:absolute;left:50%;top:27%;width:34%;transform:translateX(-50%)}
+.mk-sign{position:relative;width:min(92%,340px);padding-top:32px}
+.mk-sign:before,.mk-sign:after{content:"";position:absolute;top:0;width:3px;height:32px;background:var(--ink)}.mk-sign:before{left:18%}.mk-sign:after{right:18%}
+.mk-sign .bd{display:flex;align-items:center;gap:12px;background:var(--mb);color:var(--tx);border:3px solid var(--tx);border-radius:12px;padding:12px 16px;box-shadow:0 16px 24px -12px rgba(0,0,0,.5)}
+.stage .mk-sign .lg{width:64px;flex:none}.mk-sign b{font:700 1.3rem var(--mf)}
+.pst-0 svg *{fill:none!important;stroke:var(--muted)!important;stroke-width:1.6!important;stroke-dasharray:5 4!important}
+.pst-1 svg{filter:grayscale(1) contrast(.9)}
+.wv-foot{display:flex;align-items:center;justify-content:space-between;gap:.8rem;padding:.7rem .9rem calc(.7rem + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);background:var(--surface)}
+.wv-foot span{font-size:.88rem;color:var(--muted)}.wv-foot .cta{margin:0;border:0;padding:.7rem 1.2rem;white-space:nowrap}
+@media (max-width:600px){.dev{display:none!important}}
+#p_brand .chips,#p_proc .chips{margin:0}
+.wv-foot span{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#wv_toast{position:absolute;left:50%;bottom:5rem;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--ink);color:var(--bg);padding:.6rem 1.1rem;border-radius:999px;font-size:.9rem;display:flex;gap:.8rem;align-items:center;transition:transform .3s,opacity .3s;z-index:3;max-width:92%}
+#wv_toast.show{transform:translate(-50%,0);opacity:1;pointer-events:auto}
+#wv_toast button{background:var(--accent);color:var(--on-accent);border:0;border-radius:999px;padding:.25rem .8rem;font-weight:600;font-size:.85rem}
+.cartbtn.pop{animation:cartpop .5s cubic-bezier(.2,.8,.2,1)}@keyframes cartpop{40%{transform:scale(1.18)}}
+#count{display:inline-block}#count.tick{animation:tick .45s cubic-bezier(.2,.8,.2,1)}@keyframes tick{from{transform:translateY(-.7em);opacity:0}}
+.add.added{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.fld input,.fld textarea{transition:box-shadow .25s,border-color .25s}
+.fld input:focus,.fld textarea:focus{box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 24%,transparent)}
+.fld.bad{animation:shake .4s}@keyframes shake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+.spin{display:inline-block;width:1em;height:1em;margin-right:.5rem;vertical-align:-.15em;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin360 .7s linear infinite}@keyframes spin360{to{transform:rotate(360deg)}}
+h2.rv.in,.sub.rv.in,.note.rv.in,.about p.rv.in{animation-name:rise-soft}@keyframes rise-soft{from{opacity:0;transform:translateY(24px)}}
+#curv{background:color-mix(in srgb,var(--accent) 10%,transparent);color:var(--accent);padding:.1rem .6rem;border-radius:999px;font-family:'Sora',sans-serif}
+.log{list-style:none;margin:0;padding:0;display:grid;gap:1rem;max-width:42rem}
+.entry{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1.1rem 1.3rem}
+.eh{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;margin-bottom:.5rem}
+.vp{font:700 1rem 'Sora',sans-serif;background:var(--accent);color:var(--on-accent);padding:.15rem .75rem;border-radius:999px}
+.latest{font-size:.78rem;font-weight:600;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:0 .55rem}
+.ed{color:var(--muted);font-size:.88rem;margin-left:auto}
+.entry ul{margin:0;padding-left:1.2rem;color:var(--muted)}.entry li{margin:.25rem 0}
+.entry.rv.in{animation-name:rise-soft}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -177,7 +283,7 @@ footer{padding:2.5rem 1.4rem;text-align:center;color:var(--muted);border-top:1px
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="g3d" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:color-mix(in srgb,var(--accent) 55%,#fff)"/><stop offset="1" style="stop-color:var(--accent)"/></linearGradient></defs></svg>
 <header>
 <a class="logo" href="#top" aria-label="Frenchys home"><svg viewBox="0 0 146 40" height="36" role="img" aria-hidden="true"><g transform="translate(-5,-10) scale(0.22)"><ellipse cx="62" cy="200" rx="30" ry="6" fill="#e9c98a"/><path d="M58 198C56 170 62 140 68 114" fill="none" stroke="#c98b4a" stroke-width="7" stroke-linecap="round"/><g fill="none" stroke="#19c39a" stroke-width="7" stroke-linecap="round"><path d="M68 112Q50 90 32 102"/><path d="M68 112Q56 82 42 68"/><path d="M68 112Q70 78 68 58"/><path d="M68 112Q86 80 96 68"/><path d="M68 112Q48 108 34 126"/><path d="M68 112Q82 102 92 114"/></g></g><text x="24" y="26" font-family="Sora,Manrope,system-ui,sans-serif" font-size="22" font-weight="700" fill="currentColor" letter-spacing="-1">frenchys<tspan fill="#ffc233">.</tspan></text><path d="M26 32Q50 26 72 32T118 32" fill="none" stroke="#ffc233" stroke-width="2.4" stroke-linecap="round"/><path d="M26 37Q50 31 72 37T118 37" fill="none" stroke="#19c3d6" stroke-width="1.8" stroke-linecap="round"/><g transform="translate(61,-10) scale(0.22)"><ellipse cx="322" cy="200" rx="28" ry="6" fill="#e9c98a"/><g fill="none" stroke="#ff6fa5" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M318 160L318 198"/><path d="M326 160L336 178L326 184"/></g><ellipse cx="322" cy="150" rx="18" ry="11" fill="#ff6fa5"/><path d="M308 148Q322 138 336 148Q322 158 308 148z" fill="#ff9cc2"/><path d="M338 146C352 140 350 122 338 118" fill="none" stroke="#ff6fa5" stroke-width="6" stroke-linecap="round"/><circle cx="336" cy="115" r="6" fill="#ff6fa5"/><path d="M333 116L324 123L335 121z" fill="#ffd0e1"/></g></svg></a>
-<nav><a href="#how">How it works</a><a href="#shop">Services</a><a href="#work">My work</a><a href="#about">Contact</a><button class="cartbtn" id="open" aria-label="Open cart">Cart (<span id="count">0</span>)</button></nav>
+<nav><a href="#how">How it works</a><a href="#shop">Services</a><a href="#work">My work</a><a href="#faq">FAQ</a><a href="#about">About</a><a href="#updates">Updates</a><button class="cartbtn" id="open" aria-label="Open cart">Cart (<span id="count">0</span>)</button></nav>
 </header>
 <main id="top">
 <div class="hero"><div class="orb"></div><div class="orb2"></div>
@@ -204,18 +310,53 @@ footer{padding:2.5rem 1.4rem;text-align:center;color:var(--muted);border-top:1px
 </ol>
 <div class="card chk rv" style="--i:0"><h3>What to have ready</h3><ul><li>Your business name and what you do</li><li>The services you chose</li><li>Colors and styles you like</li><li>Your logo or photos, if you have them</li><li>Links to 2 or 3 designs you like</li><li>Your deadline, if you have one</li></ul></div>
 <a class="cta" href="#shop">See services</a></section>
-<section id="shop" hidden><h2>Services</h2><p class="sub">Not sure what a package means? Each one explains what you get and who it is for. Add what you need and send your order.</p><div class="grid" id="grid"></div><p class="note">Every package includes free revisions. I confirm your packages, price and timeline by email before any payment, and work starts after a deposit of half the price.</p></section>
-<section id="work"><h2>My work</h2><p class="sub">Practice projects for imaginary businesses, showing a range of styles.</p><div class="grid">
-<div class="card"><div class="pic lgbox" style="background:#ffd60a"><svg class="lg" viewBox="0 0 120 120" role="img" aria-label="Rise Fitness logo"><path class="sun" d="M20 80a40 40 0 0 1 80 0z" fill="#111"/><rect x="12" y="87" width="96" height="5" fill="#111"/><g stroke="#111" stroke-width="5" stroke-linecap="round"><path class="ray" d="M60 20v8M24 36l6 5M96 36l-6 5"/></g><text x="60" y="112" text-anchor="middle" font-family="Sora,sans-serif" font-weight="700" font-size="14" fill="#111">RISE</text></svg></div><div class="info"><h3>Rise Fitness</h3><p>Logo concept for a gym</p></div></div>
-<div class="card"><div class="pic lgbox" style="background:#fff1d6"><svg class="lg" viewBox="0 0 120 120" role="img" aria-label="Casa Taco logo"><g class="taco"><path d="M10 82a50 50 0 0 1 100 0z" fill="#f4a62a" stroke="#7a3e00" stroke-width="3" stroke-linejoin="round"/><path class="let" d="M22 66q7-10 14 0t14 0 14 0 14 0 14 0" fill="none" stroke="#1f8a4c" stroke-width="6" stroke-linecap="round"/><circle cx="38" cy="74" r="4" fill="#d62828"/><circle cx="60" cy="72" r="4" fill="#d62828"/><circle cx="82" cy="74" r="4" fill="#d62828"/></g><text x="60" y="108" text-anchor="middle" font-family="Sora,sans-serif" font-weight="700" font-size="13" fill="#7a3e00">Casa Taco</text></svg></div><div class="info"><h3>Casa Taco</h3><p>Logo concept for a taco truck</p></div></div>
-<div class="card"><div class="pic lgbox" style="background:#ffe0ec"><svg class="lg" viewBox="0 0 120 120" role="img" aria-label="Bloom Florist logo"><g class="pet" fill="none" stroke="#b0125f" stroke-width="2.5"><ellipse cx="60" cy="26" rx="8" ry="15"/><ellipse cx="60" cy="26" rx="8" ry="15" transform="rotate(72 60 44)"/><ellipse cx="60" cy="26" rx="8" ry="15" transform="rotate(144 60 44)"/><ellipse cx="60" cy="26" rx="8" ry="15" transform="rotate(216 60 44)"/><ellipse cx="60" cy="26" rx="8" ry="15" transform="rotate(288 60 44)"/></g><g fill="none" stroke="#b0125f" stroke-width="2.5" stroke-linecap="round"><path d="M60 62v28"/><path d="M60 80c-14-1-19-8-19-14 12 0 19 5 19 14z"/></g><circle class="ctr" cx="60" cy="44" r="5" fill="#b0125f"/><text x="60" y="112" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="18" fill="#b0125f">Bloom</text></svg></div><div class="info"><h3>Bloom Florist</h3><p>Logo concept for a flower shop</p></div></div>
+<section id="shop" hidden><h2>Services</h2><p class="sub">Not sure what a package means? Each one explains what you get and who it is for. Add what you need and send your order.</p><div class="grid" id="grid"></div><h3 class="cmph">Compare packages</h3><div class="cmpwrap" id="cmp"></div><p class="note">Every package includes free revisions. I confirm your packages, price and timeline by email before any payment, and work starts after a deposit of half the price.</p></section>
+<section id="work"><h2>My work</h2><p class="sub">Practice projects for imaginary businesses. Tap one to open its mini website, logo and colors, and design process.</p>
+<div class="chips" id="chips" role="group" aria-label="Filter my work"><button class="chip on" data-f="all" type="button" aria-pressed="true">All</button><button class="chip" data-f="logo" type="button" aria-pressed="false">Logos</button><button class="chip" data-f="web" type="button" aria-pressed="false">Websites</button></div>
+<div class="grid" id="wgrid"></div></section>
+<section id="reviews" hidden><h2>What clients say</h2><div class="grid" id="rv_list"></div></section>
+<section id="faq"><h2>Questions and answers</h2><p class="sub">The things people ask most. Don’t see yours? Email me.</p>
+<div class="faq">
+<details class="rv" style="--i:0"><summary>How long does a project take?</summary><p>I work fast, and I confirm the exact timeline by email before any payment, based on the packages you pick and when you need it. If you have a deadline, add it to your order.</p></details>
+<details class="rv" style="--i:0"><summary>How do revisions work?</summary><p>Revisions are free on every package. I send a draft, you tell me what to change, and I update it until you’re happy.</p></details>
+<details class="rv" style="--i:0"><summary>When do I pay, and how much?</summary><p>No payment is taken on this site. After I confirm your plan by email, I send payment details. Work starts after a deposit of half the price, and the rest is due when you approve the final version.</p></details>
+<details class="rv" style="--i:0"><summary>What do I get at the end?</summary><p>After you approve the design and the final payment is made, I send you the finished logo files or website files and help you get everything live. I’ll confirm exactly which files you need when I email you.</p></details>
+<details class="rv" style="--i:0"><summary>Can I order more than one package?</summary><p>Yes. Add everything you want to your cart, like a logo and a website. The Logo and Site Bundle costs less than buying both separately.</p></details>
+<details class="rv" style="--i:0"><summary>Do you work with people outside Florida?</summary><p>Yes. Everything is done online and by email, so I work with clients anywhere.</p></details>
+<details class="rv" style="--i:0"><summary>What should I have ready before I order?</summary><p>Your business name and what you do, colors and styles you like, your logo or photos if you have them, links to designs you love, and your deadline. You can add all of it in the order form.</p></details>
+<details class="rv" style="--i:0"><summary>Can I ask for something custom?</summary><p>Yes. Email <a href="mailto:frenchycollins2010@gmail.com">frenchycollins2010@gmail.com</a> and tell me what you need.</p></details>
 </div></section>
-<section id="about"><h2>Contact</h2>
-<div class="about"><p>Frenchys is a Florida-based logo and web design studio that works with clients anywhere. From a clean, memorable logo to a fast, mobile-ready website, every project is built around your brand, with clear pricing, quick turnaround, and free revisions on every package. Whether you run a local shop, an online business, or are just getting started, you can order from anywhere and everything is handled by email, start to finish.</p>
+<section id="about"><h2>About and contact</h2>
+<div class="about"><ul class="facts"><li>Based in St. Petersburg, Florida</li><li>Clients anywhere in the world</li><li>Replies within a day</li><li>Free revisions on every package</li></ul><p>Frenchys is a logo and web design studio based in St. Petersburg, Florida, that works with clients anywhere. From a clean, memorable logo to a fast, mobile-ready website, every project is built around your brand, with clear pricing, quick turnaround, and free revisions on every package. Whether you run a local shop, an online business, or are just getting started, you can order from anywhere and everything is handled by email, start to finish.</p>
 <p>Questions or a custom request? Email <a href="mailto:frenchycollins2010@gmail.com">frenchycollins2010@gmail.com</a> and I’ll reply within a day.</p></div></section>
+<section id="updates"><h2>Updates</h2><p class="sub">Every change made to this site, newest first. You are on <b id="curv">v1.6</b>.</p><ol class="log" id="log"></ol></section>
 </main>
-<footer>© 2026 Frenchys · Florida-based, serving clients everywhere<br><small id="ver" class="ver">Version 1.3 · Updated Nov 24, 2026</small></footer>
+<footer>© 2026 Frenchys · St. Petersburg, Florida, serving clients everywhere<br><small id="ver" class="ver">Version 1.8 · Updated Nov 24, 2026</small></footer>
 
+<div class="wvb" id="wvb" hidden></div>
+<div class="wv" id="wv" hidden role="dialog" aria-modal="true" aria-label="Project viewer">
+<div class="wv-bar"><div class="dots" aria-hidden="true"><i></i><i></i><i></i></div><div class="url" id="wv_url"></div><button class="ib" id="wv_prev" type="button" aria-label="Previous project">&lsaquo;</button><button class="ib" id="wv_next" type="button" aria-label="Next project">&rsaquo;</button><button class="ib" id="wv_x" type="button" aria-label="Close">&times;</button></div>
+<div class="wv-tabs" role="tablist"><button class="tab" role="tab" data-t="site" type="button">Website</button><button class="tab" role="tab" data-t="brand" type="button">Logo and colors</button><button class="tab" role="tab" data-t="proc" type="button">Design process</button><div class="dev" id="dev"><button class="tab on" data-d="desk" type="button">Desktop</button><button class="tab" data-d="phone" type="button">Phone</button></div></div>
+<div class="wv-body">
+<div class="pane" id="p_site"><div class="frame" id="frame"><iframe id="wv_if" sandbox="allow-scripts" title="Example website"></iframe></div></div>
+<div class="pane" id="p_brand" hidden>
+<div class="stage" id="stage"></div>
+<div class="chips" id="modes"><button class="chip on" data-m="brand" type="button">Brand color</button><button class="chip" data-m="light" type="button">Light</button><button class="chip" data-m="dark" type="button">Dark</button></div>
+<div class="chips" id="mks"><button class="chip on" data-k="logo" type="button">Logo</button><button class="chip" data-k="card" type="button">Business card</button><button class="chip" data-k="shirt" type="button">T-shirt</button><button class="chip" data-k="sign" type="button">Shop sign</button></div>
+<p class="sub" id="story"></p>
+<div class="sw" id="swatches"></div>
+<p class="note">Tap a color to copy its code.</p>
+</div>
+<div class="pane" id="p_proc" hidden>
+<div class="stage" id="pstage"></div>
+<p class="sub" id="pcap"></p>
+<div class="chips" id="psteps"><button class="chip" data-s="0" type="button">Sketch</button><button class="chip" data-s="1" type="button">Draft</button><button class="chip" data-s="2" type="button">Final</button></div>
+</div>
+</div>
+<div class="wv-foot"><span id="wv_note"></span><button class="cta" id="wv_order" type="button">Order something like this</button></div>
+<div id="wv_toast" role="status" aria-live="polite"></div>
+</div>
+<button class="fab" id="fab" type="button" aria-label="View cart"></button>
 <aside id="drawer" aria-label="Shopping cart">
 <div class="row"><h2 style="font-size:1.2rem">Your cart</h2><button class="add" id="close">Close</button></div>
 <div id="items"></div>
@@ -269,12 +410,21 @@ const S=[
 const cart=[];
 const $=id=>document.getElementById(id);
 $('grid').innerHTML=P.map((x,i)=>`<article class="card rv" style="--i:${i%4}"><div class="pic"><svg viewBox="0 0 100 100" aria-hidden="true">${S[i]}</svg></div><div class="info"><h3>${x.n}</h3><p class="short">${x.d}</p><p class="mean">${x.m}</p><p class="for"><b>Good for:</b> ${x.g}</p><div class="row"><strong>$${x.p}</strong><button class="add" data-i="${i}">Add package</button></div></div></article>`).join('');
+let shownTotal=0,totalRaf;
+function setTotal(t){const el=$('total'),from=shownTotal;shownTotal=t;cancelAnimationFrame(totalRaf);
+if(from===t||matchMedia('(prefers-reduced-motion:reduce)').matches){el.textContent='$'+t;return;}
+const t0=performance.now();(function step(n){const k=Math.min(1,(n-t0)/450),e=1-Math.pow(1-k,3);el.textContent='$'+Math.round(from+(t-from)*e);if(k<1)totalRaf=requestAnimationFrame(step);})(t0);}
+function bump(b){const c=$('open'),n=$('count');
+[[c,'pop'],[n,'tick'],[$('fab'),'pop']].forEach(([el,k])=>{el.classList.remove(k);void el.offsetWidth;el.classList.add(k);});
+clearTimeout(b._t);b._o=b._o||b.textContent;b.textContent='Added \u2713';b.classList.add('added');
+b._t=setTimeout(()=>{b.textContent=b._o;b.classList.remove('added');},1200);}
 function render(){
 $('count').textContent=cart.length;
-$('total').textContent='$'+cart.reduce((s,i)=>s+P[i].p,0);
+$('open').setAttribute('aria-label','Open cart, '+cart.length+(cart.length===1?' item':' items'));
+const tt=cart.reduce((s,i)=>s+P[i].p,0);setTotal(tt);const fab=$('fab');fab.textContent='View cart ('+cart.length+') \u00b7 $'+tt;fab.classList.toggle('show',cart.length>0);
 $('items').innerHTML=cart.length?cart.map((i,k)=>`<div class="line"><span>${P[i].n}</span><span>$${P[i].p}<button class="rm" data-k="${k}" aria-label="Remove ${P[i].n}">Remove</button></span></div>`).join(''):'<p class="empty">Your cart is empty. Add a package to get started.</p>';}
 document.addEventListener('click',e=>{
-const a=e.target.closest('.add[data-i]');if(a){cart.push(+a.dataset.i);render();$('drawer').classList.add('open');}
+const a=e.target.closest('.add[data-i]');if(a){cart.push(+a.dataset.i);render();bump(a);}
 const r=e.target.closest('.rm');if(r){cart.splice(+r.dataset.k,1);render();}});
 $('open').onclick=()=>{if(!$('done').hidden&&!cart.length)showForm();$('drawer').classList.add('open');};
 $('close').onclick=()=>$('drawer').classList.remove('open');
@@ -318,15 +468,15 @@ fr.onload=()=>{done();resolve();};
 f.submit();});}
 form.addEventListener('submit',async e=>{
 e.preventDefault();setErr('');
-document.querySelectorAll('.fld').forEach(f=>f.classList.remove('bad'));
+document.querySelectorAll('.fld').forEach(f=>f.classList.remove('bad'));void form.offsetWidth;
 if(!cart.length){setErr('Add an item before sending your order.');return;}
 const name=$('f_name').value.trim(),email=$('f_email').value.trim(),biz=$('f_biz').value.trim(),notes=$('f_notes').value.trim(),links=$('f_links').value.trim(),style=$('f_style').value.trim(),site=$('f_site').value.trim(),deadline=$('f_deadline').value.trim();
 if(!name){$('f_name').parentNode.classList.add('bad');setErr('Please enter your name.');$('f_name').focus();return;}
 if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){$('f_email').parentNode.classList.add('bad');setErr('Please enter a valid email so I can reply.');$('f_email').focus();return;}
 if($('f_honey').value)return;
 const list=cart.map(i=>'- '+P[i].n+' ($'+P[i].p+')').join('\n');
-const total=cart.reduce((s,i)=>s+P[i].p,0);
-const btn=$('co');btn.disabled=true;btn.textContent='Sending…';
+const total=cart.reduce((s,i)=>s+P[i].p,0);const picked=cart.map(i=>({n:P[i].n,p:P[i].p}));
+const btn=$('co');btn.disabled=true;btn.innerHTML='<span class="spin" aria-hidden="true"></span>Sending…';
 try{
 const fields={_subject:'Order from Frenchys',_template:'table',_captcha:'false',name:name,email:email,business:biz||'(not given)',order:list,total:'$'+total,design_links:links||'(none)',colors_and_style:style||'(none)',current_site:site||'(none)',deadline:deadline||'(none)',notes:notes||'(none)'};
 if(files.length){await sendWithFiles(fields);}
@@ -340,6 +490,7 @@ if(!(res.ok&&(data.success===true||data.success==='true')))throw new Error(data.
 $('donetxt').textContent='Thanks, '+name+'! Your order for $'+total+' is in. I’ll reply to '+email+'.';
 form.hidden=true;$('done').hidden=false;setErr('');
 cart.length=0;render();form.reset();files.length=0;renderFiles();
+try{sessionStorage.setItem('frenchys_order',JSON.stringify({name:name,email:email,items:picked,total:total}));}catch(_){}
 location.href='thanks.html?value='+total;
 }catch(err){
 const why=(err&&err.name==='AbortError'?'timed out after 15 seconds':String(err&&err.message||err)).replace(/[<>&]/g,'');
@@ -354,6 +505,131 @@ render();
 document.addEventListener('click',e=>{if(e.target.closest('a[href="#shop"]'))$('shop').hidden=false;});
 if(location.hash==='#shop')$('shop').hidden=false;
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+const LG={
+rise:'<svg class="lg" viewBox="0 0 120 120" role="img" aria-label="Rise Fitness logo"><path class="sun" d="M20 80a40 40 0 0 1 80 0z" fill="var(--a)"/><rect x="12" y="87" width="96" height="5" fill="var(--a)"/><g stroke="var(--a)" stroke-width="5" stroke-linecap="round"><path class="ray" d="M60 20v8M24 36l6 5M96 36l-6 5"/></g><text x="60" y="112" text-anchor="middle" font-family="Sora,sans-serif" font-weight="700" font-size="14" fill="var(--a)">RISE</text></svg>',
+taco:'<svg class="lg" viewBox="0 0 120 120" role="img" aria-label="Casa Taco logo"><g class="taco"><path d="M10 82a50 50 0 0 1 100 0z" fill="#f4a62a" stroke="var(--t)" stroke-width="3" stroke-linejoin="round"/><path class="let" d="M22 66q7-10 14 0t14 0 14 0 14 0 14 0" fill="none" stroke="#1f8a4c" stroke-width="6" stroke-linecap="round"/><circle cx="38" cy="74" r="4" fill="#d62828"/><circle cx="60" cy="72" r="4" fill="#d62828"/><circle cx="82" cy="74" r="4" fill="#d62828"/></g><text x="60" y="108" text-anchor="middle" font-family="Sora,sans-serif" font-weight="700" font-size="13" fill="var(--t)">Casa Taco</text></svg>',
+bloom:'<svg class="lg" viewBox="0 0 120 120" role="img" aria-label="Bloom Florist logo"><g class="pet" fill="none" stroke="var(--a)" stroke-width="2.5"><ellipse cx="60" cy="26" rx="8" ry="15"/><ellipse cx="60" cy="26" rx="8" ry="15" transform="rotate(72 60 44)"/><ellipse cx="60" cy="26" rx="8" ry="15" transform="rotate(144 60 44)"/><ellipse cx="60" cy="26" rx="8" ry="15" transform="rotate(216 60 44)"/><ellipse cx="60" cy="26" rx="8" ry="15" transform="rotate(288 60 44)"/></g><g fill="none" stroke="var(--a)" stroke-width="2.5" stroke-linecap="round"><path d="M60 62v28"/><path d="M60 80c-14-1-19-8-19-14 12 0 19 5 19 14z"/></g><circle class="ctr" cx="60" cy="44" r="5" fill="var(--a)"/><text x="60" y="112" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="18" fill="var(--a)">Bloom</text></svg>'};
+const PR=[
+{k:'rise',name:'Rise Fitness',note:'Logo concept for a gym',tag:'Open at 5 a.m.',font:"'Sora',sans-serif",
+style:'bold sunrise yellow and black, energetic',
+story:'A sun rising over a horizon line says "start your day here". Two colors and one simple shape keep it loud and easy to remember.',
+pal:[['Sunrise','#ffd60a'],['Night','#111111'],['Cloud','#ffffff']],
+modes:{brand:{bg:'#ffd60a',a:'#111111'},light:{bg:'#ffffff',a:'#111111'},dark:{bg:'#111111',a:'#ffd60a'}},
+th:{bg:'#fffdf2',ink:'#111111',acc:'#ffd60a',ai:'#111111',soft:'#fff3b0',hf:"'Arial Black','Helvetica Neue',Arial,sans-serif"},
+site:{nav:['Programs','Schedule','Contact'],h:'Start before the sun does.',p:'Strength, cardio and sunrise yoga in one friendly gym.',cta:'See programs',foot:'123 Example Street · Open daily from 5 a.m.',
+b0:{h:'Programs',btn:['Choose','Chosen \u2713'],items:[{n:'Strength',d:'Free weights and coaching',p:'$29/mo'},{n:'Cardio',d:'Bikes, rowers and runs',p:'$24/mo'},{n:'Sunrise Yoga',d:'Easy classes at 6 a.m.',p:'$19/mo'}]},
+b1:{h:'This week',rows:[['Mon','6:00 Strength'],['Wed','6:00 Sunrise Yoga'],['Fri','5:30 Cardio Club'],['Sat','8:00 Open gym']]}}},
+{k:'taco',name:'Casa Taco',note:'Logo concept for a taco truck',tag:'Fresh tacos, fast',font:"'Trebuchet MS',system-ui,sans-serif",
+style:'warm shell orange, lettuce green and salsa red, playful',
+story:'A taco that wobbles like it is fresh off the grill. The warm colors look like the food, so people get hungry before they read a word.',
+pal:[['Shell','#f4a62a'],['Lettuce','#1f8a4c'],['Salsa','#d62828'],['Cocoa','#7a3e00'],['Cream','#fff1d6']],
+modes:{brand:{bg:'#fff1d6',a:'#f4a62a',t:'#7a3e00'},light:{bg:'#ffffff',a:'#f4a62a',t:'#7a3e00'},dark:{bg:'#2b1600',a:'#f4a62a',t:'#ffe3b0'}},
+th:{bg:'#fff8ea',ink:'#4a2500',acc:'#d62828',ai:'#ffffff',soft:'#ffe3b0',hf:"'Trebuchet MS',system-ui,sans-serif"},
+site:{nav:['Menu','Find the truck','Contact'],h:'Tacos, fast and fresh.',p:'Made to order from a little truck with a big flavor.',cta:'See the menu',foot:'Follow the truck for daily stops',
+b0:{h:'Menu',btn:['Add','Added \u2713'],filters:['Beef','Chicken','Veggie'],items:[{n:'Carne Asada',d:'Grilled steak, onion, cilantro',p:'$4',g:'Beef'},{n:'Pollo Verde',d:'Chicken with green salsa',p:'$4',g:'Chicken'},{n:'Baja Veggie',d:'Grilled peppers and slaw',p:'$3.50',g:'Veggie'},{n:'Birria',d:'Slow-cooked beef with broth',p:'$5',g:'Beef'}]},
+b1:{h:'Find the truck',rows:[['Tue','Main Street lot, 11 to 2'],['Thu','Riverside park, 5 to 9'],['Sat','Farmers market, 9 to 1']]}}},
+{k:'bloom',name:'Bloom Florist',note:'Logo concept for a flower shop',tag:'Flowers, made by hand',font:'Georgia,serif',
+style:'soft pink and deep berry, elegant',
+story:'Five petals turn slowly around a center, like a flower opening. The slanted serif name feels handmade and personal.',
+pal:[['Petal','#b0125f'],['Blush','#ffe0ec'],['Plum','#2a0a1a']],
+modes:{brand:{bg:'#ffe0ec',a:'#b0125f'},light:{bg:'#ffffff',a:'#b0125f'},dark:{bg:'#2a0a1a',a:'#ff7ab8'}},
+th:{bg:'#fff7fa',ink:'#4a0d2c',acc:'#b0125f',ai:'#ffffff',soft:'#ffe0ec',hf:'Georgia,serif'},
+site:{nav:['Bouquets','Visit','Contact'],h:'Fresh flowers, picked for you.',p:'Seasonal bouquets made by hand and ready the same day.',cta:'See bouquets',foot:'Seasonal flowers, made by hand',
+b0:{h:'Bouquets',btn:['Add','Added \u2713'],items:[{n:'Sunday Morning',d:'Tulips and soft greens',p:'$32'},{n:'Blush Garden',d:'Roses and peonies',p:'$48'},{n:'Wild Meadow',d:'Mixed field flowers',p:'$28'}]},
+b1:{h:'Visit the shop',rows:[['Tue to Fri','9 a.m. to 6 p.m.'],['Saturday','9 a.m. to 3 p.m.'],['Sunday','Closed']]}}}];
+function siteDoc(p){const t=p.th,s=p.site;
+const css='*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:'+t.bg+';color:'+t.ink+';font:16px/1.6 system-ui,sans-serif}.ban{background:'+t.ink+';color:'+t.bg+';text-align:center;font-size:12px;padding:6px 10px}header{position:sticky;top:0;z-index:2;background:'+t.bg+';border-bottom:1px solid '+t.soft+';display:flex;justify-content:space-between;align-items:center;padding:12px 18px;gap:12px;flex-wrap:wrap}.lg{font:700 20px '+t.hf+'}nav{display:flex;gap:16px;align-items:center;font-size:14px}nav a{color:inherit;text-decoration:none;font-weight:600}.n{background:'+t.acc+';color:'+t.ai+';border-radius:99px;padding:2px 10px;font-weight:700;font-size:13px}.hero{padding:56px 18px;background:'+t.soft+';text-align:center}.hero h1{font:800 clamp(30px,8vw,52px)/1.05 '+t.hf+';margin:0 0 12px}.hero p{max-width:30em;margin:0 auto 20px}.btn{display:inline-block;background:'+t.acc+';color:'+t.ai+';border:0;border-radius:99px;padding:12px 22px;font:700 15px system-ui,sans-serif;cursor:pointer;text-decoration:none}section{padding:44px 18px;max-width:900px;margin:auto}h2{font:700 28px '+t.hf+';margin:0 0 16px}.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}.c{background:#fff;border:1px solid '+t.soft+';border-radius:14px;padding:16px}.c h3{margin:0 0 4px;font-size:17px}.c p{margin:0 0 12px;font-size:14px;opacity:.8}.c .r{display:flex;justify-content:space-between;align-items:center}.pr{font-weight:800}.c .btn{padding:7px 14px;font-size:13px}.c .btn.on{opacity:.6}.fl{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}.fl button{border:1px solid '+t.ink+';background:none;color:inherit;border-radius:99px;padding:5px 14px;font:600 13px system-ui,sans-serif;cursor:pointer}.fl button.on{background:'+t.ink+';color:'+t.bg+'}.row{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid '+t.soft+'}footer{text-align:center;padding:28px 18px;background:'+t.ink+';color:'+t.bg+';font-size:14px}#t{position:fixed;left:50%;bottom:16px;transform:translate(-50%,40px);opacity:0;background:'+t.ink+';color:'+t.bg+';padding:9px 16px;border-radius:99px;font-size:13px;transition:.3s;pointer-events:none;text-align:center}#t.s{transform:translate(-50%,0);opacity:1}';
+const b0=s.b0,fl=b0.filters?'<div class="fl"><button class="on" data-f="all">All</button>'+b0.filters.map(f=>'<button data-f="'+f+'">'+f+'</button>').join('')+'</div>':'';
+const cards=b0.items.map(i=>'<div class="c"'+(i.g?' data-g="'+i.g+'"':'')+'><h3>'+i.n+'</h3><p>'+i.d+'</p><div class="r"><span class="pr">'+i.p+'</span><button class="btn" data-a="1" data-d="'+b0.btn[1]+'">'+b0.btn[0]+'</button></div></div>').join('');
+const rows=s.b1.rows.map(r=>'<div class="row"><b>'+r[0]+'</b><span>'+r[1]+'</span></div>').join('');
+const js='var t=document.getElementById("t"),n=document.getElementById("n"),k=0,tm;function say(m){t.textContent=m;t.className="s";clearTimeout(tm);tm=setTimeout(function(){t.className=""},1800)}document.addEventListener("click",function(e){var b=e.target.closest(".btn[data-a]");if(b){if(!b.classList.contains("on")){b.classList.add("on");b.textContent=b.dataset.d;k++;n.textContent=k}say("Practice site: nothing is really sold.");return}var f=e.target.closest(".fl button");if(f){document.querySelectorAll(".fl button").forEach(function(x){x.classList.toggle("on",x===f)});document.querySelectorAll(".c[data-g]").forEach(function(c){c.style.display=(f.dataset.f==="all"||c.dataset.g===f.dataset.f)?"":"none"})}});';
+return '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>'+css+'</style></head><body><div class="ban">Practice project: a made-up business. Nothing here is real or for sale.</div><header><span class="lg">'+p.name+'</span><nav>'+s.nav.map((x,i)=>'<a href="#'+(i<2?'s'+i:'f')+'">'+x+'</a>').join('')+'<span class="n" id="n">0</span></nav></header><div class="hero"><h1>'+s.h+'</h1><p>'+s.p+'</p><a class="btn" href="#s0">'+s.cta+'</a></div><section id="s0"><h2>'+b0.h+'</h2>'+fl+'<div class="g">'+cards+'</div></section><section id="s1"><h2>'+s.b1.h+'</h2>'+rows+'</section><footer id="f">'+p.name+' · '+s.foot+'</footer><div id="t"></div><script>'+js+'<\/script></body></html>';}
+const wv=$('wv'),wb=$('wvb'),RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+let cur=0,tab='site',mode='brand',mk='logo',opener=null,pTimer=null,tt;
+const LI=P.findIndex(x=>x.n==='Logo Design');
+function setVars(el,m){el.style.setProperty('--a',m.a);el.style.setProperty('--t',m.t||m.a);el.style.setProperty('--tx',m.t||m.a);el.style.setProperty('--mb',m.bg);}
+let nc=0;
+$('wgrid').innerHTML=PR.map((p,i)=>{const m=p.modes.brand,t=p.th;
+return '<div class="card wcard rv" data-i="'+i+'" data-t="brand" data-f="logo" role="button" tabindex="0" aria-label="Open the '+p.name+' logo and colors" style="--i:'+(nc++)+'"><div class="pic lgbox" style="background:'+m.bg+';--a:'+m.a+';--t:'+(m.t||m.a)+'">'+LG[p.k]+'</div><div class="info"><h3>'+p.name+'</h3><p>'+p.note+'</p><p class="hint">Logo · tap to open</p></div></div>';}).join('')
++PR.map((p,i)=>{const t=p.th;
+return '<div class="card wcard rv" data-i="'+i+'" data-t="site" data-f="web" role="button" tabindex="0" aria-label="Open the '+p.name+' mini website" style="--i:'+(nc++)+'"><div class="pic lgbox" style="background:'+t.soft+'"><div class="shot"><div class="sbar"><i></i><i></i><i></i></div><div class="sh" style="background:'+t.bg+'"><b style="color:'+t.ink+';font-family:'+t.hf+'">'+p.name+'</b><u style="background:'+t.acc+'"></u></div></div></div><div class="info"><h3>'+p.name+' website</h3><p>A mini example site you can try</p><p class="hint">Website · tap to open</p></div></div>';}).join('');
+function toast(m,cartBtn){const e=$('wv_toast');e.textContent=m;if(cartBtn){const b=document.createElement('button');b.type='button';b.textContent='View cart';b.onclick=()=>{closeV();setTimeout(()=>$('open').click(),320);};e.append(b);}e.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>e.classList.remove('show'),3200);}
+function paintBrand(){const p=PR[cur],m=p.modes[mode],st=$('stage'),L=LG[p.k];
+setVars(st,m);st.style.setProperty('--mf',p.font);st.style.background=mk==='logo'?m.bg:'';
+st.innerHTML=mk==='logo'?L:mk==='card'?'<div class="mk-card">'+L+'<div><b>'+p.name+'</b><span>'+p.tag+'</span><span>hello@'+p.k+'.example</span></div></div>':mk==='shirt'?'<div class="mk-shirt"><svg viewBox="0 0 260 250" aria-hidden="true"><path d="M90 10L60 22L10 60L38 100L62 86V238H198V86L222 100L250 60L200 22L170 10Q130 40 90 10Z" fill="var(--mb)" stroke="var(--tx)" stroke-width="3" stroke-linejoin="round"/></svg>'+L+'</div>':'<div class="mk-sign"><div class="bd">'+L+'<b>'+p.name+'</b></div></div>';
+document.querySelectorAll('#modes .chip').forEach(b=>b.classList.toggle('on',b.dataset.m===mode));
+document.querySelectorAll('#mks .chip').forEach(b=>b.classList.toggle('on',b.dataset.k===mk));
+$('swatches').innerHTML=p.pal.map(c=>'<button type="button" data-c="'+c[1]+'"><i style="background:'+c[1]+'"></i><span><b>'+c[0]+'</b>'+c[1]+'</span></button>').join('');
+$('story').textContent=p.story;}
+function showProc(i){const p=PR[cur],st=$('pstage'),m=p.modes.brand;setVars(st,m);st.style.background=m.bg;st.className='stage pst-'+i;st.innerHTML=LG[p.k];
+$('pcap').textContent=['Sketch: start with simple shapes and rough ideas.','Draft: lock in the layout in one tone.','Final: add color and polish.'][i];
+document.querySelectorAll('#psteps .chip').forEach((b,k)=>b.classList.toggle('on',k===i));}
+function stopProc(){clearInterval(pTimer);pTimer=null;}
+function paintProc(){if(RM){showProc(2);return;}let k=0;showProc(0);pTimer=setInterval(()=>{k=(k+1)%3;showProc(k);},1900);}
+function paint(){const p=PR[cur];
+$('wv_url').textContent=p.name.toLowerCase().replace(/\s+/g,'')+'.example';
+document.querySelectorAll('#wv .tab[data-t]').forEach(b=>{const on=b.dataset.t===tab;b.classList.toggle('on',on);b.setAttribute('aria-selected',on);});
+['site','brand','proc'].forEach(k=>{$('p_'+k).hidden=k!==tab;});
+$('dev').hidden=tab!=='site';$('wv_note').textContent=p.name+' · '+(cur+1)+' of '+PR.length;
+stopProc();
+if(tab==='site'){const f=$('wv_if');if(f.dataset.k!==p.k){f.dataset.k=p.k;f.title=p.name+' example website';f.srcdoc=siteDoc(p);}}
+else if(tab==='brand')paintBrand();else paintProc();}
+function openV(i,t,from){cur=(i+PR.length)%PR.length;tab=t||tab;if(from)opener=from;
+wv.hidden=false;wb.hidden=false;document.body.style.overflow='hidden';
+requestAnimationFrame(()=>{wv.classList.add('open');wb.classList.add('open');});
+paint();$('wv_x').focus();}
+function closeV(){wv.classList.remove('open');wb.classList.remove('open');stopProc();document.body.style.overflow='';
+setTimeout(()=>{if(!wv.classList.contains('open')){wv.hidden=true;wb.hidden=true;const f=$('wv_if');f.dataset.k='';f.removeAttribute('srcdoc');}},320);
+if(opener&&opener.isConnected)opener.focus();}
+function step(d){cur=(cur+PR.length+d)%PR.length;paint();}
+const grid=$('wgrid');
+grid.addEventListener('click',e=>{const c=e.target.closest('.wcard');if(c)openV(+c.dataset.i,c.dataset.t,c);});
+grid.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('wcard')){e.preventDefault();e.target.click();}});
+if(!RM&&matchMedia('(hover:hover)').matches){
+grid.addEventListener('pointermove',e=>{const c=e.target.closest('.wcard');if(!c)return;const r=c.getBoundingClientRect();c.style.setProperty('--ry',((e.clientX-r.left)/r.width-.5)*10+'deg');c.style.setProperty('--rx',-((e.clientY-r.top)/r.height-.5)*10+'deg');});
+grid.addEventListener('pointerout',e=>{const c=e.target.closest('.wcard');if(c&&!c.contains(e.relatedTarget)){c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg');}});}
+$('chips').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;
+document.querySelectorAll('#chips .chip').forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',x===b);});
+let n=0;grid.querySelectorAll('.wcard').forEach(c=>{const show=b.dataset.f==='all'||c.dataset.f===b.dataset.f;c.hidden=!show;if(show){c.classList.remove('in');void c.offsetWidth;c.style.setProperty('--i',n++);c.classList.add('in');}});});
+$('wv_x').onclick=closeV;wb.onclick=closeV;
+$('wv_prev').onclick=()=>step(-1);$('wv_next').onclick=()=>step(1);
+wv.addEventListener('click',e=>{
+const d=e.target.closest('#dev button');if(d){$('frame').classList.toggle('phone',d.dataset.d==='phone');document.querySelectorAll('#dev button').forEach(x=>x.classList.toggle('on',x===d));return;}
+const t=e.target.closest('.tab[data-t]');if(t){tab=t.dataset.t;paint();}});
+$('modes').onclick=e=>{const b=e.target.closest('button');if(b){mode=b.dataset.m;paintBrand();}};
+$('mks').onclick=e=>{const b=e.target.closest('button');if(b){mk=b.dataset.k;paintBrand();}};
+$('psteps').onclick=e=>{const b=e.target.closest('button');if(b){stopProc();showProc(+b.dataset.s);}};
+$('swatches').onclick=async e=>{const b=e.target.closest('button');if(!b)return;const c=b.dataset.c;try{await navigator.clipboard.writeText(c);toast('Copied '+c);}catch(_){toast('Color code: '+c);}};
+$('wv_order').onclick=function(){const p=PR[cur],st=$('f_style');
+if(!st.value.trim())st.value='Like the '+p.name+' example: '+p.style;
+if(cart.includes(LI)){toast('Logo Design is already in your cart',true);return;}
+cart.push(LI);render();bump(this);toast('Added Logo Design to your cart',true);};
+let sx=null;
+wv.addEventListener('touchstart',e=>{sx=e.target.closest('.wv-tabs,iframe')?null:e.touches[0].clientX;},{passive:true});
+wv.addEventListener('touchend',e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx;sx=null;if(Math.abs(dx)>70)step(dx<0?1:-1);},{passive:true});
+document.addEventListener('keydown',e=>{if(wv.hidden)return;
+if(e.key==='Escape'){closeV();return;}
+if((e.key==='ArrowRight'||e.key==='ArrowLeft')&&document.activeElement.tagName!=='IFRAME'){step(e.key==='ArrowRight'?1:-1);return;}
+if(e.key==='Tab'){const f=[...wv.querySelectorAll('button,iframe')].filter(x=>x.offsetParent!==null);if(!f.length)return;const a=f[0],z=f[f.length-1];
+if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus();}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus();}}});
+const REVIEWS=[]; // Add real client quotes here, like {q:'They nailed my logo.',n:'Maria, Bloom Florist'}. The section shows up once there is at least one.
+if(REVIEWS.length){const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+$('rv_list').innerHTML=REVIEWS.map((r,i)=>'<figure class="card quote rv" style="--i:'+(i%4)+'"><blockquote>\u201c'+esc(r.q)+'\u201d</blockquote><figcaption>'+esc(r.n)+'</figcaption></figure>').join('');$('reviews').hidden=false;}
+$('cmp').innerHTML='<table class="cmp"><thead><tr><th>Package</th><th>Price</th><th>You get</th><th>Good for</th><th></th></tr></thead><tbody>'+P.map((x,i)=>'<tr><td>'+x.n+'</td><td class="pr">$'+x.p+'</td><td>'+x.d+'</td><td>'+x.g+'</td><td><button class="add" data-i="'+i+'">Add</button></td></tr>').join('')+'</tbody></table>';
+$('fab').onclick=()=>$('open').click();
+const LOG=[
+{v:'1.8',d:'Nov 24, 2026',t:['My work is now interactive: tap a project to open a mini example website, its logo and colors, and its design process.','Try each logo on a business card, T-shirt, or shop sign, and tap a color to copy it.','Filter my work by logos or websites, and order something like a project with one tap.']},
+{v:'1.7',d:'Nov 24, 2026',t:['New questions and answers section.','New package comparison table in Services.','A View cart button now follows you down the page once you add something.','About section shows where Frenchys is based, plus better link previews and local search info.']},
+{v:'1.6',d:'Nov 24, 2026',t:['New Updates tab with the current version and a full update log.']},
+{v:'1.5',d:'Nov 24, 2026',t:['Redesigned thank-you page with your order receipt, next steps, and a share link.','Confetti when your order goes through.']},
+{v:'1.4',d:'Nov 24, 2026',t:['New animations on the cart button, price total, form fields, and as you scroll.','Adding a package no longer opens the cart.']},
+{v:'1.3',d:'Nov 24, 2026',t:['Added a thank-you page after you send an order.']},
+{v:'1.2',d:'Nov 24, 2026',t:['Fixed orders that were not going through.']},
+{v:'1.1',d:'Nov 24, 2026',t:['Fixed photo uploads, including iPhone photos.','Longer send time for big uploads.','Added the version number.']},
+{v:'1.0',d:'Original launch',t:['Frenchys goes live.']}];
+$('log').innerHTML=LOG.map((e,i)=>'<li class="entry rv" style="--i:0"><div class="eh"><span class="vp">v'+e.v+'</span>'+(i?'':'<span class="latest">Latest</span>')+'<span class="ed">'+e.d+'</span></div><ul>'+e.t.map(x=>'<li>'+x+'</li>').join('')+'</ul></li>').join('');
+$('curv').textContent='v'+LOG[0].v;$('ver').textContent='Version '+LOG[0].v+' \u00b7 Updated '+LOG[0].d;
+document.querySelectorAll('section h2,section .sub,section .note,#work .card,.about p').forEach(el=>{el.classList.add('rv');el.style.setProperty('--i',el.matches('.card')?[...el.parentNode.children].indexOf(el):0);});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 }
 </script>
