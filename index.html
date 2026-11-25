@@ -3,6 +3,8 @@
 <head>
 <!--
   CHANGELOG (update the footer text id="ver" and the meta below every time you change the site)
+  2.0  Nov 24, 2026  My work overhaul: featured project with rough-idea vs final slider, Try your business name playground, bento grid layout, Concept badges.
+  1.9  Nov 24, 2026  Order form now checks the email address: rejects invalid emails and catches common typos (gmial.com, icloud.comp, .con) before sending.
   1.8  Nov 24, 2026  Interactive My work: filter chips, tilt cards, viewer with a mini example website (desktop/phone), logo and colors (backgrounds, business card, T-shirt, shop sign, copy colors), design process animation, and an Order something like this button. Project data lives in the PR list in the script.
   1.7  Nov 24, 2026  Added FAQ, package comparison table, floating View cart button, About facts, share image tags and local business info, empty-until-filled reviews section.
   1.6  Nov 24, 2026  Added the Updates tab (nav link, section and version badge). The log text lives in the LOG list in the script: add new entries at the top of it.
@@ -14,7 +16,7 @@
   1.0  Original version
 -->
 <meta charset="utf-8">
-<meta name="version" content="1.8">
+<meta name="version" content="2.0">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Frenchys – Logo and web design in St. Petersburg, FL</title>
 <meta name="theme-color" content="#3355ff">
@@ -207,7 +209,30 @@ footer{padding:2.5rem 1.4rem;text-align:center;color:var(--muted);border-top:1px
 .fab.show{transform:none;opacity:1;visibility:visible}
 .fab.pop{animation:cartpop .5s cubic-bezier(.2,.8,.2,1)}
 details.rv.in{animation-name:rise-soft}
-#wgrid{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+#wgrid{grid-template-columns:1fr 1fr;gap:.7rem}
+#wgrid .wcard .info p:not(.hint){display:none}#wgrid .pic.lgbox{height:120px}#wgrid .pic.lgbox svg{width:84px}
+@media(min-width:900px){#wgrid{grid-template-columns:repeat(4,1fr);gap:1rem}#wgrid .wcard .info p:not(.hint){display:block}#wgrid .pic.lgbox{height:170px}#wgrid .pic.lgbox svg{width:120px}#wgrid .wcard:nth-child(1),#wgrid .wcard:nth-child(5){grid-column:span 2}}
+.wcard .pic::after{content:"Concept";position:absolute;top:8px;left:8px;font:700 .62rem 'Manrope',sans-serif;letter-spacing:.07em;text-transform:uppercase;background:var(--surface);color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:.1rem .5rem}
+.feat{display:grid;gap:1.2rem;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:1rem;margin-bottom:1.2rem}
+@media(min-width:820px){.feat{grid-template-columns:1.1fr 1fr;align-items:center;padding:1.4rem;gap:2rem}}
+.ba{--x:50%;position:relative;overflow:hidden;border-radius:16px;aspect-ratio:16/11;background:var(--mb)}
+.ba>div{position:absolute;inset:0;display:grid;place-items:center}.ba svg{width:46%;max-width:210px;animation:none}
+.ba-b{background:#efefec;clip-path:inset(0 calc(100% - var(--x)) 0 0);filter:grayscale(1) contrast(.55) brightness(1.1)}.ba-b svg{transform:rotate(-5deg) scale(.94);opacity:.75}
+.ba::after{content:"";position:absolute;top:0;bottom:0;left:var(--x);width:3px;margin-left:-1.5px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.3);pointer-events:none}
+.ba::before{content:"\2194";position:absolute;z-index:2;top:50%;left:var(--x);width:38px;height:38px;margin:-19px 0 0 -19px;border-radius:50%;background:#fff;color:#111;display:grid;place-items:center;font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,.35);pointer-events:none}
+.ba .tg{position:absolute;z-index:2;top:10px;font:700 .66rem 'Manrope',sans-serif;letter-spacing:.06em;text-transform:uppercase;background:rgba(0,0,0,.65);color:#fff;border-radius:99px;padding:.15rem .6rem;pointer-events:none}.tg.l{left:10px}.tg.r{right:10px}
+.ba-r{position:absolute;inset:0;z-index:3;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize;touch-action:pan-y}
+.badge{display:inline-block;background:var(--accent);color:var(--on-accent);font:700 .7rem 'Manrope',sans-serif;letter-spacing:.06em;text-transform:uppercase;border-radius:99px;padding:.2rem .7rem}
+.ft h3{font-size:1.7rem;margin:.6rem 0 .1rem}.ftn{font-weight:600;color:var(--ink)!important;margin:0 0 .5rem}
+.sw{display:flex;flex-wrap:wrap;gap:.4rem;margin:.9rem 0}.sw span{display:inline-flex;align-items:center;gap:.4rem;border:1px solid var(--line);border-radius:99px;padding:.15rem .7rem .15rem .2rem;font-size:.8rem;font-weight:600}.sw i{width:18px;height:18px;border-radius:50%;border:1px solid var(--line)}
+.fb{display:flex;flex-wrap:wrap;gap:.6rem}.fbtn{background:var(--accent);color:var(--on-accent);border:0;border-radius:99px;padding:.7rem 1.2rem;font-weight:600}.fbtn.alt{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.dots{display:flex;gap:.5rem;margin-top:1rem}.dot{width:10px;height:10px;padding:0;border-radius:50%;border:0;background:var(--line);transition:width .25s,background .25s}.dot.on{width:28px;border-radius:99px;background:var(--accent)}
+.pg{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:1.2rem;margin-bottom:1.6rem}.pg h3{font-size:1.3rem}
+.pg input{width:100%;margin:.6rem 0;padding:.8rem 1rem;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:inherit}
+.pg-out{display:flex;align-items:center;justify-content:center;gap:.8rem;min-height:120px;border-radius:16px;padding:1rem;margin:.4rem 0 1rem;overflow:hidden;transition:background .3s}
+.pg-out .mono{flex:none;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font-size:1.7rem;font-weight:700}.pg-out .nm{font-weight:700;line-height:1.1;overflow-wrap:anywhere}
+#wgrid{}
+
 .chips{display:flex;flex-wrap:wrap;gap:.5rem;margin:0 0 1.2rem}
 .chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:.4rem 1.1rem;font-weight:600;font-size:.9rem;transition:background .2s,color .2s,border-color .2s}
 .chip:hover{border-color:var(--ink)}.chip.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
@@ -311,7 +336,9 @@ h2.rv.in,.sub.rv.in,.note.rv.in,.about p.rv.in{animation-name:rise-soft}@keyfram
 <div class="card chk rv" style="--i:0"><h3>What to have ready</h3><ul><li>Your business name and what you do</li><li>The services you chose</li><li>Colors and styles you like</li><li>Your logo or photos, if you have them</li><li>Links to 2 or 3 designs you like</li><li>Your deadline, if you have one</li></ul></div>
 <a class="cta" href="#shop">See services</a></section>
 <section id="shop" hidden><h2>Services</h2><p class="sub">Not sure what a package means? Each one explains what you get and who it is for. Add what you need and send your order.</p><div class="grid" id="grid"></div><h3 class="cmph">Compare packages</h3><div class="cmpwrap" id="cmp"></div><p class="note">Every package includes free revisions. I confirm your packages, price and timeline by email before any payment, and work starts after a deposit of half the price.</p></section>
-<section id="work"><h2>My work</h2><p class="sub">Practice projects for imaginary businesses. Tap one to open its mini website, logo and colors, and design process.</p>
+<section id="work"><h2>My work</h2><p class="sub">Concept projects for imaginary businesses. Drag the slider, try your own name, or tap a card to explore.</p>
+<div class="feat" id="feat"></div>
+<div class="pg"><h3>Try your business name</h3><p>Type a name and see it in one of my styles.</p><input id="pg_in" maxlength="24" placeholder="e.g. Sunny Side Cafe" aria-label="Your business name" autocomplete="off"><div class="chips" id="pg_st" role="group" aria-label="Choose a style"></div><div class="pg-out" id="pg_out"></div><button type="button" class="fbtn" id="pg_ord">Order a logo like this</button></div>
 <div class="chips" id="chips" role="group" aria-label="Filter my work"><button class="chip on" data-f="all" type="button" aria-pressed="true">All</button><button class="chip" data-f="logo" type="button" aria-pressed="false">Logos</button><button class="chip" data-f="web" type="button" aria-pressed="false">Websites</button></div>
 <div class="grid" id="wgrid"></div></section>
 <section id="reviews" hidden><h2>What clients say</h2><div class="grid" id="rv_list"></div></section>
@@ -331,7 +358,7 @@ h2.rv.in,.sub.rv.in,.note.rv.in,.about p.rv.in{animation-name:rise-soft}@keyfram
 <p>Questions or a custom request? Email <a href="mailto:frenchycollins2010@gmail.com">frenchycollins2010@gmail.com</a> and I’ll reply within a day.</p></div></section>
 <section id="updates"><h2>Updates</h2><p class="sub">Every change made to this site, newest first. You are on <b id="curv">v1.6</b>.</p><ol class="log" id="log"></ol></section>
 </main>
-<footer>© 2026 Frenchys · St. Petersburg, Florida, serving clients everywhere<br><small id="ver" class="ver">Version 1.8 · Updated Nov 24, 2026</small></footer>
+<footer>© 2026 Frenchys · St. Petersburg, Florida, serving clients everywhere<br><small id="ver" class="ver">Version 2.0 · Updated Nov 24, 2026</small></footer>
 
 <div class="wvb" id="wvb" hidden></div>
 <div class="wv" id="wv" hidden role="dialog" aria-modal="true" aria-label="Project viewer">
@@ -466,13 +493,27 @@ const done=()=>{clearTimeout(tm);fr.onload=null;f.remove();};
 const tm=setTimeout(()=>{done();reject(new Error('timed out after 60 seconds'));},60000);
 fr.onload=()=>{done();resolve();};
 f.submit();});}
+const KNOWN=['gmail.com','googlemail.com','yahoo.com','ymail.com','icloud.com','me.com','mac.com','outlook.com','hotmail.com','live.com','msn.com','aol.com','mail.com','gmx.com','proton.me','protonmail.com','zoho.com','pm.me'];
+function lev(a,b){const m=[];for(let i=0;i<=a.length;i++)m[i]=[i];for(let j=1;j<=b.length;j++)m[0][j]=j;
+for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++)m[i][j]=Math.min(m[i-1][j]+1,m[i][j-1]+1,m[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return m[a.length][b.length];}
+function emailProblem(raw){
+const e=raw.toLowerCase();
+if(!/^[a-z0-9._%+'-]+@([a-z0-9-]+\.)+[a-z]{2,}$/.test(e)||/\.\./.test(e))return {hard:true,msg:'That email doesn’t look right. Please check it so I can reply.'};
+const at=e.indexOf('@'),u=e.slice(0,at),d=e.slice(at+1);
+if(KNOWN.includes(d))return null;
+let best='',bd=9;for(const k of KNOWN){const x=lev(d,k);if(x<bd){bd=x;best=k;}}
+if(bd<=2)return {msg:'Did you mean '+u+'@'+best+'? Fix it, or tap Send order again if it’s correct.'};
+if(/\.(con|comp|cmo|vom|cim|coom|ocm|om|cm|c0m)$/.test(d))return {msg:'Did you mean '+u+'@'+d.replace(/\.[a-z0-9]+$/,'.com')+'? Fix it, or tap Send order again if it’s correct.'};
+return null;}
+let warnedEmail='';
 form.addEventListener('submit',async e=>{
 e.preventDefault();setErr('');
 document.querySelectorAll('.fld').forEach(f=>f.classList.remove('bad'));void form.offsetWidth;
 if(!cart.length){setErr('Add an item before sending your order.');return;}
 const name=$('f_name').value.trim(),email=$('f_email').value.trim(),biz=$('f_biz').value.trim(),notes=$('f_notes').value.trim(),links=$('f_links').value.trim(),style=$('f_style').value.trim(),site=$('f_site').value.trim(),deadline=$('f_deadline').value.trim();
 if(!name){$('f_name').parentNode.classList.add('bad');setErr('Please enter your name.');$('f_name').focus();return;}
-if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){$('f_email').parentNode.classList.add('bad');setErr('Please enter a valid email so I can reply.');$('f_email').focus();return;}
+const ep=emailProblem(email);
+if(ep&&(ep.hard||warnedEmail!==email.toLowerCase())){$('f_email').parentNode.classList.add('bad');setErr(ep.msg);if(!ep.hard)warnedEmail=email.toLowerCase();$('f_email').focus();return;}
 if($('f_honey').value)return;
 const list=cart.map(i=>'- '+P[i].n+' ($'+P[i].p+')').join('\n');
 const total=cart.reduce((s,i)=>s+P[i].p,0);const picked=cart.map(i=>({n:P[i].n,p:P[i].p}));
@@ -604,6 +645,27 @@ $('wv_order').onclick=function(){const p=PR[cur],st=$('f_style');
 if(!st.value.trim())st.value='Like the '+p.name+' example: '+p.style;
 if(cart.includes(LI)){toast('Logo Design is already in your cart',true);return;}
 cart.push(LI);render();bump(this);toast('Added Logo Design to your cart',true);};
+const escP=x=>x.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let fi=0,ft=null;const stopF=()=>{clearInterval(ft);ft=null;};
+function paintF(i){fi=(i+PR.length)%PR.length;const p=PR[fi],m=p.modes.brand;
+$('feat').innerHTML='<div class="ba" id="ba" style="--mb:'+m.bg+';--a:'+m.a+';--t:'+(m.t||m.a)+'"><div class="ba-f">'+LG[p.k]+'</div><div class="ba-b" aria-hidden="true">'+LG[p.k]+'</div><span class="tg l">Rough idea</span><span class="tg r">Final</span><input class="ba-r" type="range" min="0" max="100" value="50" aria-label="Slide to compare the rough idea with the final logo"></div>'
++'<div class="ft"><span class="badge">Featured concept</span><h3>'+p.name+'</h3><p class="ftn">'+p.note+'</p><p>'+p.story+'</p><div class="sw">'+p.pal.map(c=>'<span><i style="background:'+c[1]+'"></i>'+c[0]+'</span>').join('')+'</div><div class="fb"><button type="button" class="fbtn" data-o="brand">Open the logo</button><button type="button" class="fbtn alt" data-o="site">Try the website</button></div><div class="dots">'+PR.map((q,j)=>'<button type="button" class="dot'+(j===fi?' on':'')+'" data-j="'+j+'" aria-label="Show '+q.name+'"></button>').join('')+'</div></div>';}
+$('feat').addEventListener('input',e=>{if(e.target.classList.contains('ba-r')){$('ba').style.setProperty('--x',e.target.value+'%');stopF();}});
+$('feat').addEventListener('pointerdown',stopF);$('feat').addEventListener('focusin',stopF);
+$('feat').addEventListener('click',e=>{const d=e.target.closest('.dot'),o=e.target.closest('[data-o]');if(d){stopF();paintF(+d.dataset.j);}else if(o){stopF();openV(fi,o.dataset.o,o);}});
+paintF(0);if(!RM)ft=setInterval(()=>{if(wv.hidden)paintF(fi+1);},8000);
+const pgIn=$('pg_in'),pgOut=$('pg_out');let pgI=0;
+$('pg_st').innerHTML=PR.map((p,i)=>{const w=p.style.split(',').pop().trim();return '<button type="button" class="chip'+(i?'':' on')+'" data-i="'+i+'" aria-pressed="'+(i?'false':'true')+'">'+w.charAt(0).toUpperCase()+w.slice(1)+'</button>';}).join('');
+function paintPG(){const p=PR[pgI],m=p.modes.brand,n=pgIn.value.trim()||'Your Business';
+pgOut.style.background=m.bg;pgOut.innerHTML='<span class="mono" style="background:'+m.a+';color:'+m.bg+';font-family:'+p.th.hf+'">'+escP(n.charAt(0).toUpperCase())+'</span><span class="nm" style="color:'+(m.t||m.a)+';font-family:'+p.font+';font-size:'+Math.max(20,Math.round(42-n.length*1.1))+'px">'+escP(n)+'</span>';}
+pgIn.addEventListener('input',paintPG);
+$('pg_st').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;pgI=+b.dataset.i;$('pg_st').querySelectorAll('.chip').forEach(x=>{const on=x===b;x.classList.toggle('on',on);x.setAttribute('aria-pressed',on);});paintPG();});
+$('pg_ord').onclick=function(){const p=PR[pgI],st=$('f_style'),bz=$('f_biz'),n=pgIn.value.trim();
+if(!st.value.trim())st.value='Like the '+p.name+' example: '+p.style;
+if(n&&!bz.value.trim())bz.value=n;
+if(cart.includes(LI)){toast('Logo Design is already in your cart',true);return;}
+cart.push(LI);render();bump(this);toast('Added Logo Design to your cart',true);};
+paintPG();
 let sx=null;
 wv.addEventListener('touchstart',e=>{sx=e.target.closest('.wv-tabs,iframe')?null:e.touches[0].clientX;},{passive:true});
 wv.addEventListener('touchend',e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx;sx=null;if(Math.abs(dx)>70)step(dx<0?1:-1);},{passive:true});
@@ -618,6 +680,8 @@ $('rv_list').innerHTML=REVIEWS.map((r,i)=>'<figure class="card quote rv" style="
 $('cmp').innerHTML='<table class="cmp"><thead><tr><th>Package</th><th>Price</th><th>You get</th><th>Good for</th><th></th></tr></thead><tbody>'+P.map((x,i)=>'<tr><td>'+x.n+'</td><td class="pr">$'+x.p+'</td><td>'+x.d+'</td><td>'+x.g+'</td><td><button class="add" data-i="'+i+'">Add</button></td></tr>').join('')+'</tbody></table>';
 $('fab').onclick=()=>$('open').click();
 const LOG=[
+{v:'2.0',d:'Nov 24, 2026',t:['My work has a new look: a featured project with a slider that compares the rough idea to the final logo.','New Try your business name tool: type your name and see it in my styles, then order a logo like it.','Projects now sit in a bigger, more varied grid and are marked as concepts.']},
+{v:'1.9',d:'Nov 24, 2026',t:['The order form now checks your email address and catches common typos, so I can always reply to you.']},
 {v:'1.8',d:'Nov 24, 2026',t:['My work is now interactive: tap a project to open a mini example website, its logo and colors, and its design process.','Try each logo on a business card, T-shirt, or shop sign, and tap a color to copy it.','Filter my work by logos or websites, and order something like a project with one tap.']},
 {v:'1.7',d:'Nov 24, 2026',t:['New questions and answers section.','New package comparison table in Services.','A View cart button now follows you down the page once you add something.','About section shows where Frenchys is based, plus better link previews and local search info.']},
 {v:'1.6',d:'Nov 24, 2026',t:['New Updates tab with the current version and a full update log.']},
